@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Chat from './Chat';
 import Login from './Login';
 import Matches from './Matches';
-import Navbar from './Navbar';
+import Nav from './Nav';
 import Profile from './Profile';
 import './App.css';
 
@@ -10,10 +10,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      login: false,
+      nav: false,
+      login: true,
       profile: false,
       matches: false,
-      chat: true,
+      chat: false,
     }
     this.activatePage = this.activatePage.bind(this);
   }
@@ -26,7 +27,8 @@ class App extends Component {
           login: true,
           profile: false,
           matches: false,
-          chat: false
+          chat: false,
+          nav: false
         });
         break;
       case 'PROFILE':
@@ -34,7 +36,8 @@ class App extends Component {
           login: false,
           profile: true,
           matches: false,
-          chat: false
+          chat: false,
+          nav: false
         });
         break;
       case 'MATCHES':
@@ -42,7 +45,8 @@ class App extends Component {
           login: false,
           profile: false,
           matches: true,
-          chat: false
+          chat: false,
+          nav: false,
         });
         break;
       case 'CHAT':
@@ -50,7 +54,17 @@ class App extends Component {
           login: false,
           profile: false,
           matches: false,
-          chat: true
+          chat: true,
+          nav: false
+        });
+        break;
+      case 'NAV':
+        this.setState({
+          login: false,
+          profile: false,
+          matches: false,
+          chat: false,
+          nav: true
         });
         break;
       default:
@@ -61,7 +75,7 @@ class App extends Component {
   render() {
     return (
       <div className='container-fluid'>
-        <Navbar props={this.props} />
+        {this.state.nav && <Nav activatePage={this.activatePage}/>}
         {this.state.login && <Login activatePage={this.activatePage}/>}
         {this.state.profile && <Profile activatePage={this.activatePage}/>}
         {this.state.matches && <Matches activatePage={this.activatePage}/>}

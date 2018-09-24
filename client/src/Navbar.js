@@ -12,7 +12,9 @@ class Navbar extends React.Component {
       <div className='row py-2 bg-dark text-light'>
         <div className='col-12 d-flex justify-content-between align-items-center'>
           <span> Lovel Up </span>
-          <button type='button' className='btn btn-outline-light'><FontAwesomeIcon icon='bars'/></button>
+          <button type='button' className='btn btn-outline-light' onClick={(e) => this.props.activatePage(e, 'NAV', this.props.active)}>
+            <FontAwesomeIcon icon='bars'/>
+          </button>
         </div>
       </div>
     )

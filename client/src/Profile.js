@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Navbar from './Navbar';
 import './Profile.css';
 
 class Profile extends React.Component {
@@ -7,7 +8,16 @@ class Profile extends React.Component {
     this.state = {};
   }
   render() {
-    return (true);
+    return (
+      <div>
+        <Navbar props={this.props} activatePage={this.props.activatePage} active={'PROFILE'} />
+        <div className='row d-flex justify-content-center'>
+          <div className='col-12 mt-3'>
+            <h1>Profile</h1>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
