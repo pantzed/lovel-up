@@ -9,11 +9,25 @@ class Login extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Navbar props={this.props} activatePage={this.props.activatePage} active={'LOGIN'} />
-        <div className='row d-flex justify-content-center'>
-          <div className='col-10 pt-5 text-center'>
-            <h1>Welcome to Lovel Up</h1>
+      <div className='row bg-colorful'>
+        <div className='col-12'>
+          <Navbar props={this.props} activatePage={this.props.activatePage} active={'LOGIN'} />
+          <div className='row d-flex justify-content-center'>
+            <div className='col-10 mt-5 text-center'>
+              <img src='../lovel-up-logo.png' className='img img-fluid' alt='Love el up logo'></img>
+              <span className='pt-2 text-light'>The dating app for 'players'</span>
+            </div>
+          </div>
+          <div className='row d-flex justify-content-center'>
+            <div className='col-10 mt-5'>
+              <form>
+                <div className='form-group'>
+                  <input type='email' className='form-control' placeholder='Username' required/>
+                  <input type='password' className='form-control mt-1' placeholder='Password' required />
+                </div>
+                <button type='submit' className='btn btn-outline-light full-width shadow-md'>Login</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

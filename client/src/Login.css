@@ -1,0 +1,8 @@
+.bg-colorful {
+  height: 100vh;
+  background-image: linear-gradient(to bottom, #ad62e8, #c44ecd, #d338b1, #db1f93, #dc0075);
+}
+
+.full-width {
+  width: 100%;
+}
