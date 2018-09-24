@@ -19,7 +19,6 @@ function escapeLinter(arr) {
 // Prevents linter warnings about unused packages
 escapeLinter($, Popper, FontAwesomeIcon);
 
-
 library.add(faHandshake, faClipboardList, faCodeBranch, faEnvelope, faBars);
 
 ReactDOM.render(<App />, document.getElementById('root'));

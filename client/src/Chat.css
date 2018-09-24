@@ -1,0 +1,11 @@
+.screen-height {
+  height: 100vh;
+}
+
+.chat-stream {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

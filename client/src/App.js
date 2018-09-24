@@ -10,10 +10,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      login: true,
+      login: false,
       profile: false,
       matches: false,
-      chat: false,
+      chat: true,
     }
     this.activatePage = this.activatePage.bind(this);
   }
