@@ -23,7 +23,7 @@ class Profile extends React.Component {
             </div>
           </div>
         </div>
-        <div className='row d-flex justify-content-center'>
+        <div className='row mb-5 d-flex justify-content-center'>
           <div className='col-11'>
             <form>
               <FormGroup id={'age'} type={'number'} label={'Age'} value={'26'} readOnly={true}/>
@@ -32,6 +32,13 @@ class Profile extends React.Component {
               <FormGroup id={'religion'} type={'text'} label={'Religion'} value={'Agnostic'} readOnly={true} />
               <FormGroup id={'occupation'} type={'text'} label={'Occupation'} value={'Full-stack Developer'} readOnly={false} />
               <FormGroup id={'school'} type={'text'} label={'School'} value={'University of Texas'} readOnly={true} />
+              <div className='form-group'>
+                <label htmlFor='description'>Description</label>
+                <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div className='text-right'>
+                <button type='submit' className='btn btn-outline-primary'>Update</button>
+              </div>
             </form>
           </div>
         </div>
