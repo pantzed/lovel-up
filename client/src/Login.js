@@ -29,6 +29,12 @@ class Login extends React.Component {
               </form>
             </div>
           </div>
+          <div className='row mt-3 d-flex justify-content-center'>
+            <div className='col-10 d-flex justify-content-between'>
+              <span className='text-underline'>Create Account</span>
+              <span className='text-underline'>Forgot Password?</span>
+            </div>
+          </div>
         </div>
       </div>
     );
