@@ -13,7 +13,6 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
-    // const socket = io();
     let message = document.getElementById('m');
     let submit = document.getElementById('submit');
 
@@ -67,7 +66,6 @@ class Chat extends React.Component {
                 </form>
               </div>
             </div>
-
           </div>
         </div>
       </div>
