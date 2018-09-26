@@ -8,7 +8,7 @@ const port = process.env.PORT || 8000;
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-let chat_history = ['chat-begin'];
+let chat_history = [];
 //bring messages from database (knex)
 
 io.on('connection', function (socket) {

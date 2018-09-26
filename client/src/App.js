@@ -13,7 +13,7 @@ class App extends Component {
       nav: false,
       login: false,
       profile: false,
-      matches: false,
+      matches: true,
       chat: false,
       currentMatch: null,
     }
