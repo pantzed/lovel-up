@@ -9,13 +9,12 @@ class Nav extends React.Component {
   render() {
     return (
       <div>
-        <div className='row'>
-          <div className='col-12'>
+        <div className='row d-flex justify-content-center'>
+          <div className='col-12 mt-5 d-flex flex-column'>
             <h1>Navigation</h1>
-            <button type='button' className='btn btn-outline-primary' onClick={(e) => this.props.activatePage(e, 'PROFILE', 'NAV')}>Profile</button>
-            <button type='button' className='btn btn-outline-primary' onClick={(e) => this.props.activatePage(e, 'LOGIN', 'NAV')}>Login</button>
-            <button type='button' className='btn btn-outline-primary' onClick={(e) => this.props.activatePage(e, 'CHAT', 'NAV')}>Chat</button>
-            <button type='button' className='btn btn-outline-primary' onClick={(e) => this.props.activatePage(e, 'MATCHES', 'NAV')}>Matches</button>
+            <button type='button' className='mt-2 btn btn-outline-primary' onClick={(e) => this.props.activatePage(e, 'PROFILE', 'NAV')}>Profile</button>
+            <button type='button' className='mt-2 btn btn-outline-primary' onClick={(e) => this.props.activatePage(e, 'LOGIN', 'NAV')}>Login</button>
+            <button type='button' className='mt-2 btn btn-outline-primary' onClick={(e) => this.props.activatePage(e, 'MATCHES', 'NAV')}>Matches</button>
           </div>
         </div>
       </div>

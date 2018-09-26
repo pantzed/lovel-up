@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Navbar from './Navbar';
 import './Chat.css';
 
 class Chat extends React.Component {
@@ -10,12 +9,15 @@ class Chat extends React.Component {
   render() {
     return (
       <div>
-        <Navbar props={this.props} activatePage={this.props.activatePage} active={'CHAT'} />
+        <div className='d-flex justify-content-end mt-2'>
+          <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'MATCHES', 'CHAT')}>Back</button>
+        </div>
         <div className='row d-flex justify-content-center screen-height'>
           <div className='col-11'>
             <div className='row'>
               <div className='col-12 pt-3 pb-2 border-bottom text-center'>
-                <h5>Emma</h5>
+                <h5>{this.props.match.name}</h5>
+                <h6>Lovel {this.props.match.lvl}</h6>
               </div>
             </div>
             <div className='row'>
@@ -38,6 +40,7 @@ class Chat extends React.Component {
                 </form>
               </div>
             </div>
+
           </div>
         </div>
       </div>
