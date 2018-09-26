@@ -4,7 +4,7 @@ import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHandshake, faClipboardList, faCodeBranch, faEnvelope, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faHandshake, faClipboardList, faCodeBranch, faEnvelope, faBars, faPen} from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -19,7 +19,7 @@ function escapeLinter(arr) {
 // Prevents linter warnings about unused packages
 escapeLinter($, Popper, FontAwesomeIcon);
 
-library.add(faHandshake, faClipboardList, faCodeBranch, faEnvelope, faBars);
+library.add(faHandshake, faClipboardList, faCodeBranch, faEnvelope, faBars, faPen);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

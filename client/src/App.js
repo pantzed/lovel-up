@@ -14,12 +14,13 @@ class App extends Component {
       login: false,
       profile: false,
       matches: false,
-      chat: true,
+      chat: false,
+      currentMatch: null,
     }
     this.activatePage = this.activatePage.bind(this);
   }
 
-  activatePage(event, next, prev) {
+  activatePage(event, next, prev, match = null) {
     event.preventDefault();
     switch(next) {
       case 'LOGIN':
@@ -55,7 +56,8 @@ class App extends Component {
           profile: false,
           matches: false,
           chat: true,
-          nav: false
+          nav: false,
+          currentMatch: match,
         });
         break;
       case 'NAV':
@@ -79,7 +81,7 @@ class App extends Component {
         {this.state.login && <Login activatePage={this.activatePage}/>}
         {this.state.profile && <Profile activatePage={this.activatePage}/>}
         {this.state.matches && <Matches activatePage={this.activatePage}/>}
-        {this.state.chat && <Chat activatePage={this.activatePage}/>}
+        {this.state.chat && <Chat activatePage={this.activatePage} match={this.state.currentMatch}/>}
       </div>
     );
   }
