@@ -2,7 +2,7 @@ import * as React from 'react';
 import './Chat.css';
 import io from 'socket.io-client';
 
-const socket=io.connect('http://localhost:8000')
+const socket = io.connect('http://localhost:8000');
 
 class Chat extends React.Component {
   constructor(props) {
@@ -10,28 +10,31 @@ class Chat extends React.Component {
     this.state = {
       messages: [],
     };
+    this._isMounted = false;
   }
 
   componentDidMount() {
+    this._isMounted = true;
+    socket.connect();
     let message = document.getElementById('m');
     let submit = document.getElementById('submit');
 
     submit.addEventListener("click", (event) => {
       event.preventDefault();
       socket.emit('chat message', message.value);
-      console.log(message.value);
       message.value = '';
     });
   
     socket.on('chat message', (msgs)=> {
-      this.setState({
-        messages: msgs,
-      });
+      if (this._isMounted === true){
+        this.setState({
+          messages: msgs,
+        });
+      }
     });
   }
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <div className='d-flex justify-content-end mt-2'>
@@ -71,6 +74,11 @@ class Chat extends React.Component {
       </div>
     );
   }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
 }
 
 export default Chat;
