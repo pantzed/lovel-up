@@ -15,7 +15,7 @@ class Chat extends React.Component {
 
   componentDidMount() {
     this._isMounted = true;
-    socket.connect();
+    
     let message = document.getElementById('m');
     let submit = document.getElementById('submit');
 
