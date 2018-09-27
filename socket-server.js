@@ -4,7 +4,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const path = require('path');
 
-const port = process.env.PORT_1 || 8000;
+const port = 8000;
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
