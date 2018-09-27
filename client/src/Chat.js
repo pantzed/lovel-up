@@ -2,7 +2,7 @@ import * as React from 'react';
 import './Chat.css';
 import io from 'socket.io-client';
 
-const socket = io.connect('http://localhost:8000');
+const socket = io.connect('https://lovel-up-socket.herokuapp.com/');
 
 class Chat extends React.Component {
   constructor(props) {
