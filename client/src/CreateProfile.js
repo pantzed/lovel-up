@@ -22,9 +22,7 @@ class CreateProfile extends React.Component {
               <span className='pt-2 text-light'>Lovel up, playa'</span>
             </div>
           </div>
-
           <form>
-
             <SignUpForm id={'firstName'} type={'text'} placeholder={'First Name'}/>
             <SignUpForm id={'lastName'} type={'text'} placeholder={'Last Name'}/>
             <SignUpForm id={'birthday'} type={'date'} placeholder={'Birthday'}/>
@@ -35,38 +33,35 @@ class CreateProfile extends React.Component {
                 <div>
                   <h4 className='text-light'>Gender</h4>
                </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-secondary">
-                    <input type="radio" id="male" autocomplete="off" checked/> Male
+                <div className='btn-group btn-group-toggle' data-toggle='buttons'>
+                  <label className='btn btn-secondary'>
+                    <input type='radio' id='male' autocomplete='off' checked/> Male
                   </label>
-                  <label class="btn btn-secondary">
-                    <input type="radio" id="female" autocomplete="off"/> Female
+                  <label className='btn btn-secondary'>
+                    <input type='radio' id='female' autocomplete='off'/> Female
                   </label>
                 </div>
               </div>
-
               <div className='col-6'>
                 <div>
                   <h4 className='text-light'>Preference</h4>
                 </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-secondary">
-                    <input type="radio" id="male" autocomplete="off" checked/> Male
+                <div className='btn-group btn-group-toggle' data-toggle='buttons'>
+                  <label className='btn btn-secondary'>
+                    <input type='radio' id='male' autocomplete='off' checked/> Male
                   </label>
-                  <label class="btn btn-secondary">
-                    <input type="radio" id="female" autocomplete="off"/> Female
+                  <label className='btn btn-secondary'>
+                    <input type='radio' id='female' autocomplete='off'/> Female
                   </label>
                 </div>
               </div>
             </div>
-
             <div className='form-row d-flex justify-content-center'>
               <div className='col-12'>
-                <button type="submit" class="mt-2 maxWidth btn btn-primary" >Submit!</button>
+                <button type='submit' className='mt-2 maxWidth btn btn-primary'>Submit!</button>
               </div>
             </div>
           </form>
-
         </div>
       </div>
     );
