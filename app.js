@@ -3,11 +3,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
 const port = process.env.PORT || 5000;
 
-const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -18,8 +15,6 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 
-
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
@@ -38,7 +33,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}...`);
+  console.log(`API server listening on port ${port}...`);
 })
 
 module.exports = app;
