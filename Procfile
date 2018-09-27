@@ -1,2 +1,2 @@
-web: node app.js
-web: node socket-server.js
+web: node app.js $PORT
+web: node socket-server.js $PORT
