@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js",
-    "heroku-postbuild": "node socket-server.js && cd client && npm install && npm run build",
+    "start": "node app.js && node socket-server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "client": "cd client && npm start",
     "server": "node app.js",
     "socket": "node socket-server.js",
