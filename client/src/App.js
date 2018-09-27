@@ -5,6 +5,7 @@ import Matches from './Matches';
 import Nav from './Nav';
 import Profile from './Profile';
 import EditPictures from './EditPictures';
+import CreateProfile from './CreateProfile';
 import './App.css';
 
 class App extends Component {
@@ -12,9 +13,10 @@ class App extends Component {
     super(props);
     this.state = {
       nav: false,
+      createProfile: true,
       login: false,
       profile: false,
-      editPictures: true,
+      editPictures: false,
       matches: false,
       chat: false,
       currentMatch: null,
@@ -28,6 +30,7 @@ class App extends Component {
       case 'LOGIN':
         this.setState({
           login: true,
+          createProfile: false,
           profile: false,
           editPictures: false,
           matches: false,
@@ -35,9 +38,22 @@ class App extends Component {
           nav: false
         });
         break;
+      case 'CREATE_PROFILE':
+        this.setState({
+          login: false,
+          createProfile: true,
+          profile: false,
+          editPictures: false,
+          matches: false,
+          chat: false,
+          nav: false
+        });
+        break;
+        
       case 'PROFILE':
         this.setState({
           login: false,
+          createProfile: false,
           profile: true,
           editPictures: false,
           matches: false,
@@ -48,6 +64,7 @@ class App extends Component {
       case 'EDIT_PICTURES':
         this.setState({
           login: false,
+          createProfile: false,
           profile: false,
           editPictures: true,
           matches: false,
@@ -58,6 +75,7 @@ class App extends Component {
       case 'MATCHES':
         this.setState({
           login: false,
+          createProfile: false,
           profile: false,
           editPictures: false,
           matches: true,
@@ -68,6 +86,7 @@ class App extends Component {
       case 'CHAT':
         this.setState({
           login: false,
+          createProfile: false,
           profile: false,
           editPictures: false,
           matches: false,
@@ -79,6 +98,7 @@ class App extends Component {
       case 'NAV':
         this.setState({
           login: false,
+          createProfile: false,
           profile: false,
           editPictures: false,
           matches: false,
@@ -95,6 +115,7 @@ class App extends Component {
     return (
       <div className='container-fluid'>
         {this.state.nav && <Nav activatePage={this.activatePage}/>}
+        {this.state.createProfile && <CreateProfile activatePage={this.activatePage}/>}
         {this.state.login && <Login activatePage={this.activatePage}/>}
         {this.state.profile && <Profile activatePage={this.activatePage}/>}
         {this.state.editPictures && <EditPictures activatePage={this.activatePage}/>}

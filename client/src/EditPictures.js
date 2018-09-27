@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Profile from './Profile';
 import './Login.css';
 import './EditPictures.css';
 
