@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('users', (table) => {
     table.increments('id').primary();
-    table.email('username').notNullable;
+    table.string('username').notNullable;
     table.string('password', 32).notNullable;
     table.string('first').notNullable;
     table.string('last').notNullable;
@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
     table.string('gender', 1).notNullable;
     table.boolean('seeking_male').defaultTo(false);
     table.boolean('seeking_female').defaultTo(false);
-    table.binary('photo_1').notNullable;
+    table.binary('photo_1').nullable;
     table.binary('photo_2').nullable;
     table.binary('photo_3').nullable;
     table.binary('photo_4').nullable;

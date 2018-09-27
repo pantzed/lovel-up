@@ -1,8 +1,8 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('users_matches', (table) => {
-    table.foreign('match_id').references('matches.id').notNullable();
-    table.foreign('user_id').references('user.id').notNullable();
+    table.integer('match_id').references('matches.id').notNullable();
+    table.integer('user_id').references('users.id').notNullable();
   });
 };
 
