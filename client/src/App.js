@@ -4,6 +4,7 @@ import Login from './Login';
 import Matches from './Matches';
 import Nav from './Nav';
 import Profile from './Profile';
+import EditPictures from './EditPictures';
 import './App.css';
 
 class App extends Component {
@@ -13,7 +14,8 @@ class App extends Component {
       nav: false,
       login: false,
       profile: false,
-      matches: true,
+      editPictures: true,
+      matches: false,
       chat: false,
       currentMatch: null,
     }
@@ -27,6 +29,7 @@ class App extends Component {
         this.setState({
           login: true,
           profile: false,
+          editPictures: false,
           matches: false,
           chat: false,
           nav: false
@@ -36,6 +39,17 @@ class App extends Component {
         this.setState({
           login: false,
           profile: true,
+          editPictures: false,
+          matches: false,
+          chat: false,
+          nav: false
+        });
+        break;
+      case 'EDIT_PICTURES':
+        this.setState({
+          login: false,
+          profile: false,
+          editPictures: true,
           matches: false,
           chat: false,
           nav: false
@@ -45,6 +59,7 @@ class App extends Component {
         this.setState({
           login: false,
           profile: false,
+          editPictures: false,
           matches: true,
           chat: false,
           nav: false,
@@ -54,6 +69,7 @@ class App extends Component {
         this.setState({
           login: false,
           profile: false,
+          editPictures: false,
           matches: false,
           chat: true,
           nav: false,
@@ -64,6 +80,7 @@ class App extends Component {
         this.setState({
           login: false,
           profile: false,
+          editPictures: false,
           matches: false,
           chat: false,
           nav: true
@@ -80,6 +97,7 @@ class App extends Component {
         {this.state.nav && <Nav activatePage={this.activatePage}/>}
         {this.state.login && <Login activatePage={this.activatePage}/>}
         {this.state.profile && <Profile activatePage={this.activatePage}/>}
+        {this.state.editPictures && <EditPictures activatePage={this.activatePage}/>}
         {this.state.matches && <Matches activatePage={this.activatePage}/>}
         {this.state.chat && <Chat activatePage={this.activatePage} match={this.state.currentMatch}/>}
       </div>
