@@ -35,10 +35,10 @@ class CreateProfile extends React.Component {
                </div>
                 <div className='btn-group btn-group-toggle' data-toggle='buttons'>
                   <label className='btn btn-secondary'>
-                    <input type='radio' id='male' autocomplete='off' checked/> Male
+                    <input type='radio' id='gender-male' autoComplete='off' defaultChecked/> Male
                   </label>
                   <label className='btn btn-secondary'>
-                    <input type='radio' id='female' autocomplete='off'/> Female
+                    <input type='radio' id='gender-female' autoComplete='off'/> Female
                   </label>
                 </div>
               </div>
@@ -48,10 +48,10 @@ class CreateProfile extends React.Component {
                 </div>
                 <div className='btn-group btn-group-toggle' data-toggle='buttons'>
                   <label className='btn btn-secondary'>
-                    <input type='radio' id='male' autocomplete='off' checked/> Male
+                    <input type='radio' id='preference-male' autoComplete='off' defaultChecked/> Male
                   </label>
                   <label className='btn btn-secondary'>
-                    <input type='radio' id='female' autocomplete='off'/> Female
+                    <input type='radio' id='preference-female' autoComplete='off'/> Female
                   </label>
                 </div>
               </div>
