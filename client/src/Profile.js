@@ -8,6 +8,8 @@ class Profile extends React.Component {
     super(props);
     this.state = {};
   }
+  
+
   render() {
     return (
       <div>
@@ -19,7 +21,7 @@ class Profile extends React.Component {
                  className='img img-fluid' 
                  alt='your profile' /> 
             <div className='text-right'>
-              <button type='button' className='btn btn-light btn-sm n-mt-6 mr-2 shadow'>Edit Pictures</button>
+              <button onClick={(e) => this.props.activatePage(e, 'EDIT_PICTURES', 'PROFILE')} type='button' className='btn btn-light btn-sm n-mt-6 mr-2 shadow'>Edit Pictures</button>
             </div>
           </div>
         </div>
