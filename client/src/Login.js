@@ -31,7 +31,7 @@ class Login extends React.Component {
           </div>
           <div className='row mt-3 d-flex justify-content-center'>
             <div className='col-10 d-flex justify-content-between'>
-              <span className='text-underline'>Create Account</span>
+              <span className='text-underline' onClick={(e) => this.props.activatePage(e, 'CREATE_PROFILE', 'NAV')}>Create Account</span>
               <span className='text-underline'>Forgot Password?</span>
             </div>
           </div>
