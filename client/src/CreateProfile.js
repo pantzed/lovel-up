@@ -8,7 +8,57 @@ import SignUpForm from './SIgnUpForm';
 class CreateProfile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      first: '',
+      last: '',
+      birthdate: '',
+      password: '',
+      gender: '',
+      preference: '',
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    fetch('/users', { 
+      method: 'POST', 
+      mode: 'cors',
+      headers: {
+          "Content-Type": "application/json; charset=utf-8",
+      },
+      redirect: "follow",
+      referrer: "no-referrer",
+      body: JSON.stringify(this.state)
+    })
+    .then((res, error) => {
+      if (res.status === 500) {
+        return Promise.reject(new Error("Username already exists!"))
+      }
+      else {
+        return res.text();
+      }
+    })
+    .then((text) => JSON.parse(text))
+    .then((data) => {
+      this.props.activateUser(data);
+    })
+    .then(() => {
+      this.props.activatePage(null, 'PROFILE', 'NEW_USER');
+    })
+    .catch((error) => {
+      console.error(error.message);
+    });
+  }
+
+  handleChange(event) {
+    const prop = event.target.getAttribute('name') || event.target.name;
+    const value = event.target.getAttribute('value') || event.target.value;
+    this.setState({
+      [prop]: value
+    });
   }
 
   render() {
@@ -22,23 +72,23 @@ class CreateProfile extends React.Component {
               <span className='pt-2 text-light'>Lovel up, playa'</span>
             </div>
           </div>
-          <form>
-            <SignUpForm id={'firstName'} type={'text'} placeholder={'First Name'}/>
-            <SignUpForm id={'lastName'} type={'text'} placeholder={'Last Name'}/>
-            <SignUpForm id={'birthday'} type={'date'} placeholder={'Birthday'}/>
-            <SignUpForm id={'username'} type={'email'} placeholder={'Email'}/>
-            <SignUpForm id={'password'} type={'password'} placeholder={'Password'}/>
+          <form onSubmit={this.handleSubmit}>
+            <SignUpForm id={'first'} type={'text'} placeholder={'First Name'} handleChange={this.handleChange}/>
+            <SignUpForm id={'last'} type={'text'} placeholder={'Last Name'} handleChange={this.handleChange}/>
+            <SignUpForm id={'birthdate'} type={'date'} placeholder={'Birthday'} handleChange={this.handleChange}/>
+            <SignUpForm id={'username'} type={'email'} placeholder={'Email'} handleChange={this.handleChange}/>
+            <SignUpForm id={'password'} type={'password'} placeholder={'Password'} handleChange={this.handleChange}/>
             <div className='row'>
               <div className='col-6'>
                 <div>
                   <h4 className='text-light'>Gender</h4>
                </div>
                 <div className='btn-group btn-group-toggle' data-toggle='buttons'>
-                  <label className='btn btn-secondary'>
-                    <input type='radio' id='gender-male' autoComplete='off' defaultChecked/> Male
+                  <label className='btn btn-secondary' name='gender' value='m' onClick={(e) => {this.handleChange(e)}}>
+                    <input type='radio' id='gender-male' name='gender' autoComplete='off' value='male'/> Male
                   </label>
-                  <label className='btn btn-secondary'>
-                    <input type='radio' id='gender-female' autoComplete='off'/> Female
+                  <label className='btn btn-secondary' name='gender' value='f' onClick={(e) => {this.handleChange(e)}}>
+                    <input type='radio' id='gender-female' name='gender' autoComplete='off' value='female'/> Female
                   </label>
                 </div>
               </div>
@@ -47,11 +97,11 @@ class CreateProfile extends React.Component {
                   <h4 className='text-light'>Preference</h4>
                 </div>
                 <div className='btn-group btn-group-toggle' data-toggle='buttons'>
-                  <label className='btn btn-secondary'>
-                    <input type='radio' id='preference-male' autoComplete='off' defaultChecked/> Male
+                  <label className='btn btn-secondary' name='preference' value='m' onClick={(e) => {this.handleChange(e)}}>
+                    <input type='radio' id='preference-male' name='preference' autoComplete='off' defaultChecked/> Male
                   </label>
-                  <label className='btn btn-secondary'>
-                    <input type='radio' id='preference-female' autoComplete='off'/> Female
+                  <label className='btn btn-secondary' name='preference' value='f' onClick={(e) => {this.handleChange(e)}}>
+                    <input type='radio' id='preference-female' name='preference' autoComplete='off' /> Female
                   </label>
                 </div>
               </div>

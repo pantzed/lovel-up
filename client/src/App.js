@@ -20,12 +20,16 @@ class App extends Component {
       matches: false,
       chat: false,
       currentMatch: null,
+      userData: {},
     }
     this.activatePage = this.activatePage.bind(this);
+    this.activateUser = this.activateUser.bind(this);
   }
 
-  activatePage(event, next, prev, match = null) {
-    event.preventDefault();
+  activatePage(event = null, next, prev, match = null) {
+    if (event) {
+      event.preventDefault();
+    }
     switch(next) {
       case 'LOGIN':
         this.setState({
@@ -111,11 +115,17 @@ class App extends Component {
     }
   }
 
+  activateUser(userData) {
+    this.setState({
+      userData: userData,
+    })
+  }
+
   render() {
     return (
       <div className='container-fluid'>
         {this.state.nav && <Nav activatePage={this.activatePage}/>}
-        {this.state.createProfile && <CreateProfile activatePage={this.activatePage}/>}
+        {this.state.createProfile && <CreateProfile activatePage={this.activatePage} activateUser={this.activateUser} />}
         {this.state.login && <Login activatePage={this.activatePage}/>}
         {this.state.profile && <Profile activatePage={this.activatePage}/>}
         {this.state.editPictures && <EditPictures activatePage={this.activatePage}/>}

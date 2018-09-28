@@ -20,7 +20,7 @@ class Login extends React.Component {
           </div>
           <div className='row d-flex justify-content-center'>
             <div className='col-10 mt-5'>
-              <form>
+              <form action='/users' method='POST'>
                 <div className='form-group'>
                   <input type='email' className='form-control' placeholder='Username' required/>
                   <input type='password' className='form-control mt-1' placeholder='Password' required />
