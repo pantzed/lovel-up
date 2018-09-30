@@ -123,11 +123,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className='container-fluid'>
+      <div className='container-fluid full-height'>
         {this.state.nav && <Nav activatePage={this.activatePage}/>}
         {this.state.createProfile && <CreateProfile activatePage={this.activatePage} activateUser={this.activateUser} />}
         {this.state.login && <Login activatePage={this.activatePage}/>}
-        {this.state.profile && <Profile activatePage={this.activatePage}/>}
+        {this.state.profile && <Profile activatePage={this.activatePage} userData={this.state.userData}/>}
         {this.state.editPictures && <EditPictures activatePage={this.activatePage}/>}
         {this.state.matches && <Matches activatePage={this.activatePage}/>}
         {this.state.chat && <Chat activatePage={this.activatePage} match={this.state.currentMatch}/>}

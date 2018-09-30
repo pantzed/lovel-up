@@ -8,6 +8,8 @@ exports.up = function(knex, Promise) {
     table.string('last').notNullable;
     table.date('birthdate').notNullable;
     table.string('gender', 1).notNullable;
+    table.string('location').notNullable;
+    table.string('occupation');
     table.boolean('seeking_male').defaultTo(false);
     table.boolean('seeking_female').defaultTo(false);
     table.binary('photo_1').defaultTo(null);

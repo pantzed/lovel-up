@@ -36,6 +36,7 @@ router.post('/', function(req, res) {
       seekingFemale = true
     );
 
+    console.log(req.body);
     return knex('users')
     .insert({
       first: req.body.first,
@@ -46,7 +47,9 @@ router.post('/', function(req, res) {
       seeking_male: seekingMale,
       username: req.body.username,
       birthdate: req.body.birthdate,
-      photo_1: req.body.photo
+      photo_1: req.body.photo,
+      occupation: req.body.occupation,
+      location: req.body.location,
     }, '*')
     .then((user) => {
       res.send(user);
