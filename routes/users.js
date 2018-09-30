@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
 
 /* Post a new user. */
 router.post('/', function(req, res) {
+  console.log(req.body.photo);
   knex('users')
   .where('username', req.body.username)
   .then((user) => {
@@ -44,7 +45,8 @@ router.post('/', function(req, res) {
       seeking_female: seekingFemale,
       seeking_male: seekingMale,
       username: req.body.username,
-      birthdate: req.body.birthdate
+      birthdate: req.body.birthdate,
+      photo_1: req.body.photo
     }, '*')
     .then((user) => {
       res.send(user);

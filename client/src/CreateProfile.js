@@ -15,6 +15,7 @@ class CreateProfile extends React.Component {
       password: '',
       gender: '',
       preference: '',
+      photo_1: null
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -54,6 +55,7 @@ class CreateProfile extends React.Component {
   }
 
   handleChange(event) {
+    console.log(this.state);
     const prop = event.target.getAttribute('name') || event.target.name;
     const value = event.target.getAttribute('value') || event.target.value;
     this.setState({
@@ -79,10 +81,25 @@ class CreateProfile extends React.Component {
             <SignUpForm id={'username'} type={'email'} placeholder={'Email'} handleChange={this.handleChange}/>
             <SignUpForm id={'password'} type={'password'} placeholder={'Password'} handleChange={this.handleChange}/>
             <div className='row'>
+              <div className='col-12'>
+                <h4 className='text-light m-0 p-0'>Profile Photo</h4>
+                <div className='form-group row'>
+                  <label htmlFor='photo_1' className='col-sm-2 col-form-label'></label>
+                    <div className='col-sm-10'>
+                      <input type='file'
+                            name='photo_1' 
+                            className='form-control' 
+                            id='photo_1'
+                            accept='image/png, image/jpeg'
+                            onChange={(e) => this.handleChange(e)}
+                            required />
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div className='row'>
               <div className='col-6'>
-                <div>
-                  <h4 className='text-light'>Gender</h4>
-               </div>
+                <h4 className='text-light'>Gender</h4>
                 <div className='btn-group btn-group-toggle' data-toggle='buttons'>
                   <label className='btn btn-secondary' name='gender' value='m' onClick={(e) => {this.handleChange(e)}}>
                     <input type='radio' id='gender-male' name='gender' autoComplete='off' value='male'/> Male
