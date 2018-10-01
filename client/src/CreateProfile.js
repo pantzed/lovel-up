@@ -80,7 +80,6 @@ class CreateProfile extends React.Component {
                 <SignUpForm id={'last'} type={'text'} placeholder={'Last Name'} handleChange={this.handleChange}/>
                 <SignUpForm id={'username'} type={'email'} placeholder={'Email'} handleChange={this.handleChange}/>
                 <SignUpForm id={'password'} type={'password'} placeholder={'Password'} handleChange={this.handleChange}/>
-                <SignUpForm id={'occupation'} type={'text'} placeholder={'Occupation'} handleChange={this.handleChange}/>
                 <SignUpForm id={'location'} type={'text'} placeholder={'Zip Code'} handleChange={this.handleChange}/>
                 <SignUpForm id={'birthdate'} type={'date'} placeholder={'Birthday'} handleChange={this.handleChange}/>
                 <div className='row'>

@@ -17,7 +17,7 @@ class Profile extends React.Component {
     const dateNow = Date.now();
     const birthdateParsed = Date.parse(user.birthdate);
     const years = Math.floor((dateNow - birthdateParsed)/1000/60/60/24/365);
-    console.log(user);
+    
     return (
       <div>
         <Navbar props={this.props} activatePage={this.props.activatePage} active={'PROFILE'} />
