@@ -13,15 +13,20 @@ class App extends Component {
     super(props);
     this.state = {
       nav: false,
-      createProfile: true,
-      login: false,
+      createProfile: false,
+      login: true,
       profile: false,
       editPictures: false,
       matches: false,
       chat: false,
       currentMatch: null,
-      userData: {},
-    }
+      userData: [{
+        first: 'Bill',
+        last: 'Bob',
+        birthdate: '29091992',
+        location: '78746',
+    }]
+  }
     this.activatePage = this.activatePage.bind(this);
     this.activateUser = this.activateUser.bind(this);
   }
@@ -126,7 +131,7 @@ class App extends Component {
       <div className='container-fluid full-height'>
         {this.state.nav && <Nav activatePage={this.activatePage}/>}
         {this.state.createProfile && <CreateProfile activatePage={this.activatePage} activateUser={this.activateUser} />}
-        {this.state.login && <Login activatePage={this.activatePage}/>}
+        {this.state.login && <Login activatePage={this.activatePage} activateUser={this.activateUser}/>}
         {this.state.profile && <Profile activatePage={this.activatePage} userData={this.state.userData}/>}
         {this.state.editPictures && <EditPictures activatePage={this.activatePage}/>}
         {this.state.matches && <Matches activatePage={this.activatePage}/>}

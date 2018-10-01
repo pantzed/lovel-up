@@ -13,6 +13,7 @@ class Profile extends React.Component {
   
 
   render() {
+    console.log(this.state.user);
     const user = this.state.user[0];
     const dateNow = Date.now();
     const birthdateParsed = Date.parse(user.birthdate);
