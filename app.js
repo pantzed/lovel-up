@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000;
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const matchesRouter = require('./routes/matches');
+const messagesRouter = require('./routes/messages');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/matches', matchesRouter);
+app.use('/messages', messagesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

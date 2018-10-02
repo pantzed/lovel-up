@@ -11,9 +11,31 @@ class Chat extends React.Component {
       messages: [],
     };
     this._isMounted = false;
+    this.getMessageHistory = this.getMessageHistory.bind(this);
+  }
+
+  getMessageHistory() {
+    fetch(`/messages/${this.props.match.match_id}`, {
+      method: 'GET', 
+      mode: 'cors',
+      redirect: "follow",
+      referrer: "no-referrer"
+    })
+    .then((res) => {
+      return res.text()
+    })
+    .then((text) => JSON.parse(text))
+    .then((messageHistory) => {
+      if (messageHistory) {
+        this.setState({
+          messages: this.state.messages.concat(messageHistory),
+        })
+      }
+    })
   }
 
   componentDidMount() {
+    this.getMessageHistory();
     this._isMounted = true;
     
     let message = document.getElementById('m');
@@ -28,7 +50,7 @@ class Chat extends React.Component {
     socket.on('chat message', (msgs)=> {
       if (this._isMounted === true){
         this.setState({
-          messages: msgs,
+          messages: this.state.messages.concat(msgs),
         });
       }
     });
@@ -44,17 +66,20 @@ class Chat extends React.Component {
           <div className='col-11'>
             <div className='row'>
               <div className='col-12 pt-3 pb-2 border-bottom text-center'>
-                <h5>{this.props.match.name}</h5>
-                <h6>Lovel {this.props.match.lvl}</h6>
+                <h5>{`${this.props.match.first} ${this.props.match.last}`}</h5>
+                <h6>Lovel {this.props.match.level}</h6>
               </div>
             </div>
             <div className='row'>
               <div className='col-12'>
                 <ul id="messagesContainer" className='chat-stream mt-4 text-light'>
-                  <li className='py-3 pl-2 pr-5 my-1 align-self-start bg-primary rounded shadow-sm'>Hello!</li>
-                  <li className='py-3 pl-2 pr-5 my-1 align-self-end bg-info rounded shadow-sm'>Hi!</li>
-                  {this.state.messages.map((message, index)=>{
-                    return  <li key={index} className='py-3 pl-2 pr-5 my-1 align-self-start bg-primary rounded shadow-sm'>{message}</li>
+                  {this.state.messages.map((message, index)=> {
+                    if (message.user_id === this.props.userData[0].id) {
+                      return <li key={index} className='py-3 pl-2 pr-5 my-1 align-self-end bg-info rounded shadow-sm'>{message.message}</li>
+                    }
+                    else {
+                      return  <li key={index} className='py-3 pl-2 pr-5 my-1 align-self-start bg-primary rounded shadow-sm'>{message.message}</li>
+                    }
                   })}
                 </ul>
               </div>
@@ -77,6 +102,7 @@ class Chat extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+    socket.close();
   }
 
 }
