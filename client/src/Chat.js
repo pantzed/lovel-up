@@ -13,8 +13,13 @@ class Chat extends React.Component {
     this.state = {
       messages: [],
     };
+    this.getMessageHistory();
     this._isMounted = false;
     this.getMessageHistory = this.getMessageHistory.bind(this);
+    this.socket = io.connect('https://lovel-up-socket.herokuapp.com/');
+    if (process.env.NODE_ENV !== 'production') {
+      this.socket = io.connect('http://localhost:8000/');
+    }
   }
 
   getMessageHistory() {
@@ -38,7 +43,6 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
-    this.getMessageHistory();
     this._isMounted = true;
     
     let messageValue = document.getElementById('m');
@@ -46,15 +50,27 @@ class Chat extends React.Component {
 
     submit.addEventListener("click", (event) => {
       event.preventDefault();
+
       const messageObj = {
         message: messageValue.value,
         user_id: this.props.userData[0].id,
         match_id: this.props.match.match_id,
         created_at: Date.now()
       };
-      console.log(messageObj);
+
       socket.emit('chat message', messageObj);
       messageValue.value = '';
+
+      fetch('/messages', {
+        method: 'POST', 
+        mode: 'cors',
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        redirect: "follow",
+        referrer: "no-referrer",
+        body: JSON.stringify([messageObj])
+      })
     });
   
     socket.on('chat message', (msgs)=> {
@@ -113,7 +129,6 @@ class Chat extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false;
-    socket.close();
   }
 
 }
