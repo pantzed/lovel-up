@@ -60,4 +60,34 @@ router.post('/', function(req, res) {
   })
 });
 
+
+router.patch('/:id', (req, res, next) => {
+  knex('users')
+      .where('id', req.params.id)
+      .first()
+      .then((user) => {
+          if (!user) {
+            return next();
+          }
+
+          return knex('users')
+              .update({
+                  occupation: req.body.occupation,
+                  ethnicity: req.body.ethnicity,
+                  religion: req.body.religion,
+                  school: req.body.school,
+                  description: req.body.description,
+              }, '*')
+              .where('id', req.params.id);
+      })
+      .then((users) => {
+          res.send(users[0]);
+      })
+      .catch((error) => {
+        res.status(500)
+        res.end(error.message);
+      });
+});
+
+
 module.exports = router;

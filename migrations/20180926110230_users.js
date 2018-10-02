@@ -10,6 +10,9 @@ exports.up = function(knex, Promise) {
     table.string('gender', 1).notNullable;
     table.string('location').notNullable;
     table.string('occupation');
+    table.string('ethnicity');
+    table.string('religion');
+    table.string('school');
     table.boolean('seeking_male').defaultTo(false);
     table.boolean('seeking_female').defaultTo(false);
     table.binary('photo_1').defaultTo(null);

@@ -132,7 +132,7 @@ class App extends Component {
         {this.state.nav && <Nav activatePage={this.activatePage}/>}
         {this.state.createProfile && <CreateProfile activatePage={this.activatePage} activateUser={this.activateUser} />}
         {this.state.login && <Login activatePage={this.activatePage} activateUser={this.activateUser}/>}
-        {this.state.profile && <Profile activatePage={this.activatePage} userData={this.state.userData}/>}
+        {this.state.profile && <Profile activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData}/>}
         {this.state.editPictures && <EditPictures activatePage={this.activatePage}/>}
         {this.state.matches && <Matches activatePage={this.activatePage} userData={this.state.userData}/>}
         {this.state.chat && <Chat activatePage={this.activatePage} match={this.state.currentMatch}/>}
