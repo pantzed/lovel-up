@@ -7,24 +7,26 @@ class Matches extends React.Component {
     super(props);
     this.state = {
       test: null,
-      matches: [{name: 'Emma', lvl: 3}, {name: 'April', lvl: 2}, {name: 'Jenny', lvl: 8}, {name: 'Sarah', lvl: 4}],
+      matches: [],
     };
   }
 
   componentDidMount() {
-    fetch('/matches', { 
+    let userId = this.props.userData[0].id;
+    fetch(`matches/${userId}`, { 
       method: 'GET', 
       mode: 'cors',
       redirect: "follow",
       referrer: "no-referrer",
     })
     .then((res) => {
-      console.log(res);
       return res.text()
     })
     .then((text) => JSON.parse(text))
     .then((data) => {
-      console.log(data);
+      this.setState({
+        matches: data
+      })
     })
   }
 
@@ -48,11 +50,11 @@ class Matches extends React.Component {
                       </img>
                     </div>
                     <div className='col-6'>
-                      <span>{match.name}</span>
+                      <span>{`${match.first} ${match.last}`}</span>
                     </div>
                     <div className='col-3 d-flex flex-column align-items-center'>
                       <div>lvl</div>
-                      <div>{match.lvl}</div>
+                      <div>{match.level}</div>
                     </div>
                   </div>
                 )
