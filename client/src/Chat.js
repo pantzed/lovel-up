@@ -3,9 +3,6 @@ import './Chat.css';
 import io from 'socket.io-client';
 
 let socket = io.connect('https://lovel-up-socket.herokuapp.com/');
-if (process.env.NODE_ENV !== 'production') {
-  socket = io.connect('http://localhost:8000/');
-}
 
 class Chat extends React.Component {
   constructor(props) {
@@ -16,7 +13,6 @@ class Chat extends React.Component {
     this.getMessageHistory();
     this._isMounted = false;
     this.getMessageHistory = this.getMessageHistory.bind(this);
-    this.socket = io.connect('https://lovel-up-socket.herokuapp.com/');
   }
 
   getMessageHistory() {
@@ -126,6 +122,7 @@ class Chat extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+    socket.close();
   }
 
 }
