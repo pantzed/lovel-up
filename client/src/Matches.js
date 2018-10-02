@@ -6,9 +6,28 @@ class Matches extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      test: null,
       matches: [{name: 'Emma', lvl: 3}, {name: 'April', lvl: 2}, {name: 'Jenny', lvl: 8}, {name: 'Sarah', lvl: 4}],
     };
   }
+
+  componentDidMount() {
+    fetch('/matches', { 
+      method: 'GET', 
+      mode: 'cors',
+      redirect: "follow",
+      referrer: "no-referrer",
+    })
+    .then((res) => {
+      console.log(res);
+      return res.text()
+    })
+    .then((text) => JSON.parse(text))
+    .then((data) => {
+      console.log(data);
+    })
+  }
+
   render() {
     return (
       <div>
