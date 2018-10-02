@@ -6,14 +6,22 @@ const knex = require('knex')(config);
 
 router.get('/:match_id', (req, res) => {
   const match = req.params.match_id;
-
   knex('messages')
   .where('match_id', match)
   .orderBy('created_at', 'desc')
   .then((messages) => {
-    console.log(messages);
     res.send(messages);
-  })
-})
+  });
+});
+
+router.post('/', (req, res) => {
+  knex('messages')
+  .update(req.body)
+  .select('*')
+  .then(() => {
+    res.status(200);
+    res.send();
+  });
+});
 
 module.exports = router;

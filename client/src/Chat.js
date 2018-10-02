@@ -2,7 +2,10 @@ import * as React from 'react';
 import './Chat.css';
 import io from 'socket.io-client';
 
-const socket = io.connect('https://lovel-up-socket.herokuapp.com/');
+let socket = io.connect('https://lovel-up-socket.herokuapp.com/');
+if (process.env.NODE_ENV !== 'production') {
+  socket = io.connect('http://localhost:8000/');
+}
 
 class Chat extends React.Component {
   constructor(props) {
@@ -38,13 +41,20 @@ class Chat extends React.Component {
     this.getMessageHistory();
     this._isMounted = true;
     
-    let message = document.getElementById('m');
+    let messageValue = document.getElementById('m');
     let submit = document.getElementById('submit');
 
     submit.addEventListener("click", (event) => {
       event.preventDefault();
-      socket.emit('chat message', message.value);
-      message.value = '';
+      const messageObj = {
+        message: messageValue.value,
+        user_id: this.props.userData[0].id,
+        match_id: this.props.match.match_id,
+        created_at: Date.now()
+      };
+      console.log(messageObj);
+      socket.emit('chat message', messageObj);
+      messageValue.value = '';
     });
   
     socket.on('chat message', (msgs)=> {
@@ -57,6 +67,7 @@ class Chat extends React.Component {
   }
 
   render() {
+    const messages = this.state.messages;
     return (
       <div>
         <div className='d-flex justify-content-end mt-2'>
@@ -73,7 +84,7 @@ class Chat extends React.Component {
             <div className='row'>
               <div className='col-12'>
                 <ul id="messagesContainer" className='chat-stream mt-4 text-light'>
-                  {this.state.messages.map((message, index)=> {
+                  {messages.map((message, index)=> {
                     if (message.user_id === this.props.userData[0].id) {
                       return <li key={index} className='py-3 pl-2 pr-5 my-1 align-self-end bg-info rounded shadow-sm'>{message.message}</li>
                     }
