@@ -76,10 +76,10 @@ class Profile extends React.Component {
             <form onSubmit={this.handleSubmit}>
               <FormGroup id={'age'} type={'number'} label={'Age'} value={years} readOnly={true}/>
               <FormGroup id={'location'} type={'text'} label={'Location'} value={user.location} readOnly={false} />
-              <FormGroup id={'occupation'} type={'text'} label={'Occupation'} handleChange={this.handleChange} readOnly={false} />
-              <FormGroup id={'ethnicity'} type={'text'} label={'Ethnicity'} handleChange={this.handleChange} readOnly={false} />
-              <FormGroup id={'religion'} type={'text'} label={'Religion'} handleChange={this.handleChange} readOnly={false} />
-              <FormGroup id={'school'} type={'text'} label={'School'} handleChange={this.handleChange} readOnly={false} />
+              <FormGroup id={'occupation'} type={'text'} label={'Occupation'} value={user.occupation}  handleChange={this.handleChange} readOnly={false} />
+              <FormGroup id={'ethnicity'} type={'text'} label={'Ethnicity'} value={user.ethnicity} handleChange={this.handleChange} readOnly={false} />
+              <FormGroup id={'religion'} type={'text'} label={'Religion'} value={user.religion} handleChange={this.handleChange} readOnly={false} />
+              <FormGroup id={'school'} type={'text'} label={'School'} value={user.school} handleChange={this.handleChange} readOnly={false} />
               <div className='form-group'>
                 <label htmlFor='description'>Description</label>
                 <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
