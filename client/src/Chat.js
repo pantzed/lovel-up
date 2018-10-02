@@ -17,9 +17,6 @@ class Chat extends React.Component {
     this._isMounted = false;
     this.getMessageHistory = this.getMessageHistory.bind(this);
     this.socket = io.connect('https://lovel-up-socket.herokuapp.com/');
-    if (process.env.NODE_ENV !== 'production') {
-      this.socket = io.connect('http://localhost:8000/');
-    }
   }
 
   getMessageHistory() {
