@@ -7,13 +7,51 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: this.props.userData,
+      user: this.props.userData
     };
+    this.handleChange=this.handleChange.bind(this);
+    this.handleSubmit=this.handleSubmit.bind(this);
   }
-  
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('handle Submit Values: ', this.state.user[0]);
+    fetch(`/users/${this.state.user[0].id}`, { 
+      method: 'PATCH', 
+      mode: 'cors',
+      headers: {
+          "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(this.state.user[0])
+    })
+    .then((res, error) => {
+      if (res.status === 500) {
+        return Promise.reject(new Error("Something went wrong. Please try again"))
+      }
+      else {
+        return res.text();
+      }
+    })
+    .then((text) => JSON.parse(text))
+    .then((data) => {
+      this.props.activateUser(data);
+    })
+    .catch((error) => {
+      console.error(error.message);
+    });
+  }
+
+  handleChange(event) {
+    event.preventDefault();
+
+    let userData=this.state.user;
+    userData[0][event.target.name] = event.target.value
+    this.setState({
+        user: userData
+      }); 
+    };
 
   render() {
-    console.log(this.state.user);
     const user = this.state.user[0];
     const dateNow = Date.now();
     const birthdateParsed = Date.parse(user.birthdate);
@@ -35,13 +73,13 @@ class Profile extends React.Component {
         </div>
         <div className='row mb-5 d-flex justify-content-center'>
           <div className='col-11'>
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <FormGroup id={'age'} type={'number'} label={'Age'} value={years} readOnly={true}/>
               <FormGroup id={'location'} type={'text'} label={'Location'} value={user.location} readOnly={false} />
-              <FormGroup id={'occupation'} type={'text'} label={'Occupation'} value={user.occupation} readOnly={false} />
-              <FormGroup id={'ethnicity'} type={'text'} label={'Ethnicity'} readOnly={false} />
-              <FormGroup id={'religion'} type={'text'} label={'Religion'} readOnly={false} />
-              <FormGroup id={'school'} type={'text'} label={'School'} readOnly={false} />
+              <FormGroup id={'occupation'} type={'text'} label={'Occupation'} handleChange={this.handleChange} readOnly={false} />
+              <FormGroup id={'ethnicity'} type={'text'} label={'Ethnicity'} handleChange={this.handleChange} readOnly={false} />
+              <FormGroup id={'religion'} type={'text'} label={'Religion'} handleChange={this.handleChange} readOnly={false} />
+              <FormGroup id={'school'} type={'text'} label={'School'} handleChange={this.handleChange} readOnly={false} />
               <div className='form-group'>
                 <label htmlFor='description'>Description</label>
                 <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>

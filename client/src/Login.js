@@ -51,7 +51,6 @@ class Login extends React.Component {
       else {
         this.props.activateUser([data]);
 
-        
       }
     })
     .then(()=>this.props.activatePage(null, 'PROFILE', 'LOGIN'))
