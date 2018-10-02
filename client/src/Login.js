@@ -42,8 +42,6 @@ class Login extends React.Component {
     .then((res) => res.text())
     .then(text=> JSON.parse(text))
     .then(data => {
-      console.log(data);
-
       if(data.error) {
         let errorMessage = new Error(data.error);
         return Promise.reject(errorMessage);

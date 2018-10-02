@@ -54,6 +54,8 @@ class Chat extends React.Component {
       socket.emit('chat message', messageObj);
       messageValue.value = '';
 
+      console.log(this.props.match.match_id);
+      console.log(this.props.userData[0].id);
       fetch('/messages', {
         method: 'POST', 
         mode: 'cors',
@@ -122,7 +124,6 @@ class Chat extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false;
-    socket.close();
   }
 
 }

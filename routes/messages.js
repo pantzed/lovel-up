@@ -10,7 +10,6 @@ router.get('/:match_id', (req, res) => {
   .where('match_id', match)
   .orderBy('created_at', 'asc')
   .then((messages) => {
-    console.log(messages);
     res.send(messages);
   });
 });
