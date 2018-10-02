@@ -13,8 +13,8 @@ class App extends Component {
     super(props);
     this.state = {
       nav: false,
-      createProfile: false,
-      login: true,
+      createProfile: true,
+      login: false,
       profile: false,
       editPictures: false,
       matches: false,

@@ -64,7 +64,7 @@ class CreateProfile extends React.Component {
 
   render() {
     return (
-      <div className='row bg-colorful full-height'>
+      <div className='row bg-colorful'>
         <div className='col-12'>
           <Navbar props={this.props} activatePage={this.props.activatePage} active={'PROFILE'} />
           <div className='row d-flex justify-content-center'>
@@ -110,7 +110,7 @@ class CreateProfile extends React.Component {
                 </div>
                 <div className='form-row pb-5 d-flex justify-content-center'>
                   <div className='col-12'>
-                    <button type='submit' className='maxWidth btn btn-primary'>Submit!</button>
+                    <button type='submit' className='mt-4 maxWidth btn btn-primary'>Submit!</button>
                   </div>
                 </div>
               </form>
