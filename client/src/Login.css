@@ -1,7 +1,14 @@
 .bg-colorful {
-  height: 100vh;
+  background: linear-gradient(to bottom, #ad62e8, #c44ecd, #d338b1, #db1f93, #dc0075);
   min-height: 100%;
-  background-image: linear-gradient(to bottom, #ad62e8, #c44ecd, #d338b1, #db1f93, #dc0075);
+}
+
+.backgroundSize {
+  background: no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .full-width {
