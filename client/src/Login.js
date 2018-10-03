@@ -30,14 +30,13 @@ class Login extends React.Component {
     userData.password = this.state.password;
     
     fetch(`/login`, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, cors, *same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
       headers: {
           "Content-Type": "application/json; charset=utf-8",
-          // "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: JSON.stringify(userData), // body data type must match "Content-Type" header
+      body: JSON.stringify(userData),
     })
     .then((res) => res.text())
     .then(text=> JSON.parse(text))
@@ -80,7 +79,7 @@ class Login extends React.Component {
           </div>
           <div className='row mt-3 d-flex justify-content-center'>
             <div className='col-10 d-flex justify-content-between'>
-              <span className='text-underline' >Create Account</span>
+              <span className='text-underline' onClick={(e) => this.props.activatePage(e, 'CREATE_PROFILE', 'NAV')}>Create Account</span>
               <span className='text-underline'>Forgot Password?</span>
             </div>
           </div>

@@ -54,8 +54,6 @@ class Chat extends React.Component {
       socket.emit('chat message', messageObj);
       messageValue.value = '';
 
-      console.log(this.props.match.match_id);
-      console.log(this.props.userData[0].id);
       fetch('/messages', {
         method: 'POST', 
         mode: 'cors',
@@ -81,46 +79,39 @@ class Chat extends React.Component {
     const messages = this.state.messages;
     return (
       <div>
-        <div className='d-flex justify-content-end mt-2'>
+        <div className='chat-menu text-right'>
           <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'MATCHES', 'CHAT')}>Back</button>
         </div>
-        <div className='row d-flex justify-content-center screen-height'>
-          <div className='col-11'>
-            <div className='row'>
-              <div className='col-12 pt-3 pb-2 border-bottom text-center'>
-                <h5>{`${this.props.match.first} ${this.props.match.last}`}</h5>
-                <h6>Lovel {this.props.match.level}</h6>
+        <div className='chat-match text-center'>
+          <h5>{`${this.props.match.first} ${this.props.match.last}`}</h5>
+          <h6>Lovel {this.props.match.level}</h6>
+        </div>
+        <div id="messagesContainer" className='mb-5'>
+        <ul className='chat-stream mt-4 text-light'>
+            {messages.map((message, index)=> {
+              if (message.user_id === this.props.userData[0].id) {
+                return <li key={index} className='py-3 pl-3 pr-5 my-1 align-self-end bubble-a'>{message.message}</li>
+              }
+              else {
+                return  <li key={index} className='py-3 pl-3 pr-5 my-1 align-self-start bubble-b'>{message.message}</li>
+              }
+            })}
+          </ul>
+        </div>
+        <div className='chat-input'>
+          <div className='col-12 mt-3'>
+            <form action='' className='form-inline'>
+              <div className='form-group m-0'>
+                <input id='m' className="form-control" type="text" placeholder="Default input" />
               </div>
-            </div>
-            <div className='row'>
-              <div className='col-12'>
-                <ul id="messagesContainer" className='chat-stream mt-4 text-light'>
-                  {messages.map((message, index)=> {
-                    if (message.user_id === this.props.userData[0].id) {
-                      return <li key={index} className='py-3 pl-2 pr-5 my-1 align-self-end bg-info rounded shadow-sm'>{message.message}</li>
-                    }
-                    else {
-                      return  <li key={index} className='py-3 pl-2 pr-5 my-1 align-self-start bg-primary rounded shadow-sm'>{message.message}</li>
-                    }
-                  })}
-                </ul>
-              </div>
-            </div>
-            <div className='row mt-5 border-top'>
-              <div className='col-12 mt-3'>
-                <form action='' className='form-inline'>
-                  <div className='form-group m-0'>
-                    <input id='m' className="form-control" type="text" placeholder="Default input" />
-                  </div>
-                  <button id='submit' type='submit' className='btn btn-outline-primary ml-2'>Send</button>
-                </form>
-              </div>
-            </div>
+              <button id='submit' type='submit' className='btn btn-outline-primary ml-2'>Send</button>
+            </form>
           </div>
         </div>
       </div>
     );
   }
+
 
   componentWillUnmount() {
     this._isMounted = false;
