@@ -80,18 +80,27 @@ class Profile extends React.Component {
             </div>
           </div>
         </div>
-        <div className='row mb-5 d-flex justify-content-center'>
-          <div className='col-11'>
-            <h6>Total Exp: <span>{user.total_exp} pts</span></h6>
-            <h6>Lovel: <span>{user.level}</span></h6>
-            <h6>Next Lovel:</h6>
-            <div className='progress-container bg-light rounded' style={progressContainer}>
+        <div className='row d-flex justify-content-center'>
+          <div className='col-11 d-flex flex-column justify-content-center'>
+            <h6 className='p1-2 text-center'>Lovel Progress ({((user.level * 20) - user.total_exp)}/{'20'})</h6>
+            <div className='progress-container rounded' style={progressContainer}>
               <div className='progress-bar rounded' style={progressFill}></div>
             </div>
           </div>
         </div>
+        <div className='row mb-5 mt-4 d-flex justify-content-center'>
+          <div className='col-5 text-center'>
+            <h6>Total Exp</h6>
+            <span>{user.total_exp}</span>
+          </div>
+          <div className='col-5 text-center'>
+            <h6>Current Lovel</h6>
+            <span>{user.level}</span>
+          </div>
+        </div>
         <div className='row mb-5 d-flex justify-content-center'>
           <div className='col-11'>
+          <h4>User Info:</h4>
             <form onSubmit={this.handleSubmit}>
               <FormGroup id={'age'} type={'number'} label={'Age'} value={years} readOnly={true}/>
               <FormGroup id={'location'} type={'text'} label={'Location'} value={user.location} readOnly={false} />
