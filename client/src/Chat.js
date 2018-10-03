@@ -43,7 +43,7 @@ class Chat extends React.Component {
 
     submit.addEventListener("click", (event) => {
       event.preventDefault();
-
+      this.props.addPoints(1); // ++ One Point for sent message! ++
       const messageObj = {
         message: messageValue.value,
         user_id: this.props.userData[0].id,
@@ -52,6 +52,7 @@ class Chat extends React.Component {
       };
 
       socket.emit('chat message', messageObj);
+
       messageValue.value = '';
 
       fetch('/messages', {

@@ -69,7 +69,6 @@ router.patch('/:id', (req, res, next) => {
           if (!user) {
             return next();
           }
-
           return knex('users')
               .update({
                   occupation: req.body.occupation,
@@ -87,7 +86,33 @@ router.patch('/:id', (req, res, next) => {
         res.status(500)
         res.end(error.message);
       });
-});
+  });
+
+  router.patch('/:id/points', (req, res, next) => {
+    console.log(req.body);
+    knex('users')
+        .where('id', req.params.id)
+        .first()
+        .then((user) => {
+            if (!user) {
+              return next();
+            }
+            return knex('users')
+                .update({
+                    total_exp: req.body.total_exp,
+                    level: req.body.level
+                }, '*')
+                .where('id', req.params.id);
+        })
+        .then((users) => {
+            res.send(users[0]);
+        })
+        .catch((error) => {
+          res.status(500)
+          res.end(error.message);
+        });
+    });
+  
 
 
 module.exports = router;

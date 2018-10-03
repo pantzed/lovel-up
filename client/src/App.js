@@ -13,22 +13,18 @@ class App extends Component {
     super(props);
     this.state = {
       nav: false,
-      createProfile: true,
-      login: false,
+      createProfile: false,
+      login: true,
       profile: false,
       editPictures: false,
       matches: false,
       chat: false,
       currentMatch: null,
-      userData: [{
-        first: 'Bill',
-        last: 'Bob',
-        birthdate: '29091992',
-        location: '78746',
-    }]
+      userData: {},
   }
     this.activatePage = this.activatePage.bind(this);
     this.activateUser = this.activateUser.bind(this);
+    this.addPoints = this.addPoints.bind(this);
   }
 
   activatePage(event = null, next, prev, match = null) {
@@ -126,6 +122,39 @@ class App extends Component {
     })
   }
 
+  addPoints(value) {
+    const nextUserData = this.state.userData[0];
+    nextUserData.total_exp += value;
+    nextUserData.level = (Math.floor(nextUserData.total_exp / 20) + 1);
+
+    fetch(`/users/${this.state.userData[0].id}/points`, { 
+      method: 'PATCH', 
+      mode: 'cors',
+      headers: {
+          "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(nextUserData)
+    })
+    .then((res, error) => {
+      if (res.status === 500) {
+        return Promise.reject(new Error("Something went wrong. Please try again"))
+      }
+      else {
+        return res.text();
+      }
+    })
+    .then((text) => JSON.parse(text))
+    .then((data) => {
+      console.log(data);
+      this.setState({
+        userData: [data]
+      });
+    })
+    .catch((error) => {
+      console.error(error.message);
+    });
+  }
+
   render() {
     return (
       <div className='container-fluid full-height'>
@@ -135,7 +164,12 @@ class App extends Component {
         {this.state.profile && <Profile activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData}/>}
         {this.state.editPictures && <EditPictures activatePage={this.activatePage}/>}
         {this.state.matches && <Matches activatePage={this.activatePage} userData={this.state.userData}/>}
-        {this.state.chat && <Chat activatePage={this.activatePage} match={this.state.currentMatch} userData={this.state.userData}/>}
+        { this.state.chat && 
+          <Chat activatePage={this.activatePage} 
+                match={this.state.currentMatch} 
+                userData={this.state.userData}
+                addPoints={this.addPoints}
+        />}
       </div>
     );
   }

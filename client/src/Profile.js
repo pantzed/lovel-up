@@ -9,8 +9,8 @@ class Profile extends React.Component {
     this.state = {
       user: this.props.userData
     };
-    this.handleChange=this.handleChange.bind(this);
-    this.handleSubmit=this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
@@ -44,7 +44,7 @@ class Profile extends React.Component {
   handleChange(event) {
     event.preventDefault();
 
-    let userData=this.state.user;
+    let userData = this.state.user;
     userData[0][event.target.name] = event.target.value
     this.setState({
         user: userData
@@ -52,11 +52,20 @@ class Profile extends React.Component {
     };
 
   render() {
+
     const user = this.state.user[0];
     const dateNow = Date.now();
     const birthdateParsed = Date.parse(user.birthdate);
     const years = Math.floor((dateNow - birthdateParsed)/1000/60/60/24/365);
-    
+    const progressContainer = {
+      width: `100%`,
+      height: '10px',
+    };
+    const progressFill = {
+      width: `${(((user.level * 20) - user.total_exp)/20)*100}%`,
+      height: '100%',
+    };
+
     return (
       <div>
         <Navbar props={this.props} activatePage={this.props.activatePage} active={'PROFILE'} />
@@ -68,6 +77,16 @@ class Profile extends React.Component {
                  alt='your profile' /> 
             <div className='text-right'>
               <button onClick={(e) => this.props.activatePage(e, 'EDIT_PICTURES', 'PROFILE')} type='button' className='btn btn-light btn-sm n-mt-6 mr-2 shadow'>Edit Pictures</button>
+            </div>
+          </div>
+        </div>
+        <div className='row mb-5 d-flex justify-content-center'>
+          <div className='col-11'>
+            <h6>Total Exp: <span>{user.total_exp} pts</span></h6>
+            <h6>Lovel: <span>{user.level}</span></h6>
+            <h6>Next Lovel:</h6>
+            <div className='progress-container bg-light rounded' style={progressContainer}>
+              <div className='progress-bar rounded' style={progressFill}></div>
             </div>
           </div>
         </div>
