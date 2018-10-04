@@ -19,11 +19,13 @@ class EditPictures extends React.Component {
     let element = event.target;
     let elementName = event.target.name;
     let elementValue = event.target.value;
+    let photoDiv = document.getElementById(element.name);
     fetch(`${elementValue}`)
     .then((res) => {
-      if (res.status !== 200) {
-        element.classList.add('border', 'border-danger');
-        return Promise.reject(new Error('The image you requested is unavailable'));
+      if (!res.ok) {
+        photoDiv.classList.add('photo-error');
+        element.classList.add('photo-error');
+        throw Error(`${res.status}: URL is invalid!`);
       }
       else {
         let userData = this.state.user;
@@ -31,7 +33,8 @@ class EditPictures extends React.Component {
         this.setState({
           user: userData
         });
-        element.classList.remove('border', 'border-danger');
+        photoDiv.classList.remove('photo-error');
+        element.classList.remove('photo-error');
       }
     })
     .catch((error) => {
@@ -93,15 +96,15 @@ class EditPictures extends React.Component {
             <PhotoPreview id={'photo_1'} col={8} src={user.photo_1 || fakeImage}/>
             <div className='col-4'>
               <div className='row'>
-                <PhotoPreview id={'photo_1'} col={12} src={user.photo_2 || fakeImage}/>
-                <PhotoPreview id={'photo_1'} col={12} src={user.photo_3 || fakeImage}/>
+                <PhotoPreview id={'photo_2'} col={12} src={user.photo_2 || fakeImage}/>
+                <PhotoPreview id={'photo_3'} col={12} src={user.photo_3 || fakeImage}/>
               </div>
             </div>
           </div>
           <div className='row d-flex justify-content-between'>
-            <PhotoPreview id={'photo_1'} col={4} src={user.photo_4 || fakeImage}/>
-            <PhotoPreview id={'photo_1'} col={4} src={user.photo_5 || fakeImage}/>
-            <PhotoPreview id={'photo_1'} col={4} src={user.photo_6 || fakeImage}/>
+            <PhotoPreview id={'photo_4'} col={4} src={user.photo_4 || fakeImage}/>
+            <PhotoPreview id={'photo_5'} col={4} src={user.photo_5 || fakeImage}/>
+            <PhotoPreview id={'photo_6'} col={4} src={user.photo_6 || fakeImage}/>
           </div>
           <hr />
           <h4 className='mt-3'>Update Photos</h4>
