@@ -107,7 +107,7 @@ class EditPictures extends React.Component {
             <PhotoPreview id={'photo_6'} col={4} src={user.photo_6 || fakeImage}/>
           </div>
           <hr />
-          <h4 className='mt-3'>Update Photos</h4>
+          <h4 className='mt-3'>Update URLs</h4>
           <form className='d-flex flex-column mb-5'>
             <FormGroup id={'photo_1'} type={'url'} label={'Photo 1:'} value={user.photo_1} readOnly={false} handleChange={this.handleChange}/>
             <FormGroup id={'photo_2'} type={'url'} label={'Photo 2:'} value={user.photo_2} readOnly={false} handleChange={this.handleChange}/>
