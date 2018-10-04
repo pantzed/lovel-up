@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
   .leftJoin('users', 'users.id', 'matches.user_b')
   .select(
     'matches.id as match_id', 
-    'users.username', 'users.first', 'users.last', 'users.level', 'users.occupation', 'users.gender', 'users.birthdate',
+    'users.username', 'users.first', 'users.last', 'users.level', 'users.occupation', 'users.gender', 'users.birthdate', 'users.photo_1',
     'matches.match_a', 'matches.match_b'
   )
   .then((matches_a) => {
@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
     .leftJoin('users', 'users.id', 'matches.user_a')
     .select(
       'matches.id as match_id', 
-      'users.username', 'users.first', 'users.last', 'users.level', 'users.occupation', 'users.gender', 'users.birthdate',
+      'users.username', 'users.first', 'users.last', 'users.level', 'users.occupation', 'users.gender', 'users.birthdate', 'users.photo_1',
       'matches.match_a', 'matches.match_b'
     )
   })
