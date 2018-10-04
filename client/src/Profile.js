@@ -53,6 +53,7 @@ class Profile extends React.Component {
 
   render() {
 
+    const fakeImage = 'https://www.hhcenter.org/wp-content/uploads/2017/02/person-placeholder.jpg';
     const user = this.state.user[0];
     const dateNow = Date.now();
     const birthdateParsed = Date.parse(user.birthdate);
@@ -62,7 +63,7 @@ class Profile extends React.Component {
       height: '10px',
     };
     const progressFill = {
-      width: `${(((user.level * 20) - user.total_exp)/20)*100}%`,
+      width: `${((user.total_exp % 20)/20) * 100}%`,
       height: '100%',
     };
 
@@ -72,7 +73,7 @@ class Profile extends React.Component {
         <div className='row d-flex justify-content-center'>
           <div className='col-12 text-center'>
             <h2>{`${user.first}'s Profile`}</h2>
-            <img src='https://images.pexels.com/photos/904276/pexels-photo-904276.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350'
+            <img src={user.photo_1 || fakeImage}
                  className='img img-fluid' 
                  alt='your profile' /> 
             <div className='text-right'>
@@ -82,7 +83,7 @@ class Profile extends React.Component {
         </div>
         <div className='row d-flex justify-content-center'>
           <div className='col-11 d-flex flex-column justify-content-center'>
-            <h6 className='p1-2 text-center'>Lovel Progress ({((user.level * 20) - user.total_exp)}/{'20'})</h6>
+            <h6 className='p1-2 text-center'>Lovel Progress ({user.total_exp % 20}/{'20'})</h6>
             <div className='progress-container rounded' style={progressContainer}>
               <div className='progress-bar rounded' style={progressFill}></div>
             </div>
@@ -104,7 +105,7 @@ class Profile extends React.Component {
             <form onSubmit={this.handleSubmit}>
               <FormGroup id={'age'} type={'number'} label={'Age'} value={years} readOnly={true}/>
               <FormGroup id={'location'} type={'text'} label={'Location'} value={user.location} readOnly={false} />
-              <FormGroup id={'occupation'} type={'text'} label={'Occupation'} value={user.occupation}  handleChange={this.handleChange} readOnly={false} />
+              <FormGroup id={'occupation'} type={'text'} label={'Occupation'} value={user.occupation} handleChange={this.handleChange} readOnly={false} />
               <FormGroup id={'ethnicity'} type={'text'} label={'Ethnicity'} value={user.ethnicity} handleChange={this.handleChange} readOnly={false} />
               <FormGroup id={'religion'} type={'text'} label={'Religion'} value={user.religion} handleChange={this.handleChange} readOnly={false} />
               <FormGroup id={'school'} type={'text'} label={'School'} value={user.school} handleChange={this.handleChange} readOnly={false} />

@@ -62,6 +62,7 @@ router.post('/', function(req, res) {
 
 
 router.patch('/:id', (req, res, next) => {
+  console.log(req.body);
   knex('users')
       .where('id', req.params.id)
       .first()
@@ -112,6 +113,33 @@ router.patch('/:id', (req, res, next) => {
           res.end(error.message);
         });
     });
+
+    router.patch('/:id/dynamic', (req, res, next) => {
+      for(prop in req.body) {
+        if (prop.length > 200) {
+          return Promise.reject(new Error('URL length should be less than 200 characters!'));
+        }
+      }
+      knex('users')
+          .where('id', req.params.id)
+          .first()
+          .then((user) => {
+              if (!user) {
+                return next();
+              }
+              return knex('users')
+                     .where('id', req.params.id)
+                     .update(req.body, '*')
+          })
+          .then((users) => {
+              res.send(users[0]);
+          })
+          .catch((error) => {
+            res.status(500)
+            res.end(error.message);
+          });
+      });
+    
   
 
 
