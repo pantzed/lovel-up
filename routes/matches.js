@@ -50,4 +50,63 @@ router.get('/:id', (req, res) => {
   });
 });
 
+router.patch('/:id', (req, res, next) => {
+  const match_id = req.body.id;
+  const user_id = req.params.id;
+  knex('matches')
+  .where({
+    user_a: user_id,
+    user_b: match_id
+  })
+  .orWhere({
+    user_a: match_id,
+    user_b: user_id,
+  })
+  .then((match) => {
+    console.log('match found: ', match);
+    console.log('\n');
+    // if(parseInt(user_id)===match[0].user_a) {
+    //     console.log('changing user_a');
+    //     return knex('matches')
+    //     .update({
+    //         match_a: true,
+    //     }, '*')
+    //     .where({
+    //       id: match[0].id,
+    //       user_a: user_id,
+    //     });
+    //   }
+    //   else if (parseInt(user_id)===match[0].user_b) {
+    //     console.log('changing user_b');
+    //     return knex('matches')
+    //     .update({
+    //         match_b: true,
+    //     }, '*')
+    //     .where({
+    //       id: match[0].id,
+    //       user_b: user_id,
+    //     });
+    //   }
+      // else {
+        return knex('matches')
+        .insert({
+          user_a: user_id, 
+          user_b: match_id, 
+          match_a: true, 
+          match_b: false,
+        }, '*')
+      // }
+  })
+  .then((matches) => {
+    console.log('match: ', matches);
+    console.log('\n');
+    
+      res.send(matches[0]);
+  })
+  .catch((error) => {
+    res.status(500)
+    res.end(error.message);
+  });
+});
+
 module.exports = router;

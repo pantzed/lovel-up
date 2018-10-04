@@ -8,6 +8,7 @@ class Login extends React.Component {
     this.state = {
       username: '',
       password: '',
+      potentialMatches: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -50,6 +51,28 @@ class Login extends React.Component {
       }
     })
     .then(()=>this.props.activatePage(null, 'PROFILE', 'LOGIN'))
+    .then(()=>{
+      console.log('fetch call worked');
+      fetch(`/potentialMatches/${this.props.userData[0].id}`, {
+        method: 'GET', 
+        mode: 'cors',
+        redirect: "follow",
+        referrer: "no-referrer"
+      })
+      .then((res) => {
+        return res.text()
+      })
+      .then((text) => JSON.parse(text))
+      .then((pMatches) => {
+        if (pMatches) {
+          this.props.userPotentialMatches(pMatches);
+         }
+
+      })
+      .then(()=>{
+      })
+      
+    })
     .catch(error => {
       console.error('error: ', error.message);
     });

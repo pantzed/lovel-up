@@ -1,7 +1,7 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('matches', (table) => {
-    table.increments('id').primary();
+    table.increments('id');
     table.integer('user_a').references('id').inTable('users');
     table.integer('user_b').references('id').inTable('users');
     table.boolean('match_a').defaultTo(false);
