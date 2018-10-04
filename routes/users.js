@@ -115,11 +115,6 @@ router.patch('/:id', (req, res, next) => {
     });
 
     router.patch('/:id/dynamic', (req, res, next) => {
-      for(prop in req.body) {
-        if (prop.length > 200) {
-          return Promise.reject(new Error('URL length should be less than 200 characters!'));
-        }
-      }
       knex('users')
           .where('id', req.params.id)
           .first()
