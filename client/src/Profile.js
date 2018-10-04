@@ -74,10 +74,10 @@ class Profile extends React.Component {
           <div className='col-12 text-center'>
             <h2>{`${user.first}'s Profile`}</h2>
             <img src={user.photo_1 || fakeImage}
-                 className='img img-fluid' 
+                 className='img profile-photo' 
                  alt='your profile' /> 
             <div className='text-right'>
-              <button onClick={(e) => this.props.activatePage(e, 'EDIT_PICTURES', 'PROFILE')} type='button' className='btn btn-light btn-sm n-mt-6 mr-2 shadow'>Edit Pictures</button>
+              <button onClick={(e) => this.props.activatePage(e, 'EDIT_PICTURES', 'PROFILE')} type='button' className='btn btn-light btn-sm n-mt-6 mr-2 shadow-lg'>Edit Pictures</button>
             </div>
           </div>
         </div>
