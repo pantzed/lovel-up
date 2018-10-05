@@ -16,6 +16,7 @@ class Nav extends React.Component {
             <button type='button' className='mt-2 btn btn-outline-primary' onClick={(e) => this.props.activatePage(e, 'PROFILE', 'NAV')}>Profile</button>
             <button type='button' className='mt-2 btn btn-outline-primary' onClick={(e) => this.props.activatePage(e, 'MATCHES', 'NAV')}>Matches</button>
             <button type='button' className='mt-2 btn btn-outline-primary' onClick={(e) => this.props.activatePage(e, 'CREATE_PROFILE', 'NAV')}>Create Profile</button>
+            <button type='button' className='mt-2 btn btn-outline-primary' onClick={(e) => this.props.activatePage(e, 'POTENTIAL_MATCHES', 'NAV')}>Potential Matches</button>
           </div>
         </div>
       </div>

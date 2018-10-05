@@ -7,6 +7,7 @@ import Profile from './Profile';
 import EditPictures from './EditPictures';
 import CreateProfile from './CreateProfile';
 import './App.css';
+import PotentialMatches from './PotentialMatches';
 
 class App extends Component {
   constructor(props) {
@@ -20,11 +21,13 @@ class App extends Component {
       matches: false,
       chat: false,
       currentMatch: null,
-      userData: {},
+      potentialMatch: false,
+      userData: [{}],
+      potentialMatches: [{}],
   }
     this.activatePage = this.activatePage.bind(this);
     this.activateUser = this.activateUser.bind(this);
-    this.addPoints = this.addPoints.bind(this);
+    this.potentialMatches = this.potentialMatches.bind(this);
   }
 
   activatePage(event = null, next, prev, match = null) {
@@ -40,7 +43,8 @@ class App extends Component {
           editPictures: false,
           matches: false,
           chat: false,
-          nav: false
+          nav: false,
+          potentialMatch: false
         });
         break;
       case 'CREATE_PROFILE':
@@ -51,7 +55,8 @@ class App extends Component {
           editPictures: false,
           matches: false,
           chat: false,
-          nav: false
+          nav: false,
+          potentialMatch: false
         });
         break;
         
@@ -63,7 +68,8 @@ class App extends Component {
           editPictures: false,
           matches: false,
           chat: false,
-          nav: false
+          nav: false,
+          potentialMatch: false
         });
         break;
       case 'EDIT_PICTURES':
@@ -74,7 +80,8 @@ class App extends Component {
           editPictures: true,
           matches: false,
           chat: false,
-          nav: false
+          nav: false,
+          potentialMatch: false
         });
         break;
       case 'MATCHES':
@@ -86,6 +93,7 @@ class App extends Component {
           matches: true,
           chat: false,
           nav: false,
+          potentialMatch: false
         });
         break;
       case 'CHAT':
@@ -98,6 +106,7 @@ class App extends Component {
           chat: true,
           nav: false,
           currentMatch: match,
+          potentialMatch: false
         });
         break;
       case 'NAV':
@@ -108,7 +117,20 @@ class App extends Component {
           editPictures: false,
           matches: false,
           chat: false,
-          nav: true
+          nav: true,
+          potentialMatch: false
+        });
+        break;
+      case 'POTENTIAL_MATCHES':
+        this.setState({
+          login: false,
+          createProfile: false,
+          profile: false,
+          editPictures: false,
+          matches: false,
+          chat: false,
+          nav: false,
+          potentialMatch: true
         });
         break;
       default:
@@ -119,6 +141,11 @@ class App extends Component {
   activateUser(userData) {
     this.setState({
       userData: userData,
+    })
+  }
+  potentialMatches(potentialUserData){
+    this.setState({
+      potentialMatches: potentialUserData
     })
   }
 
@@ -159,10 +186,11 @@ class App extends Component {
       <div className='container-fluid full-height'>
         {this.state.nav && <Nav activatePage={this.activatePage}/>}
         {this.state.createProfile && <CreateProfile activatePage={this.activatePage} activateUser={this.activateUser} />}
-        {this.state.login && <Login activatePage={this.activatePage} activateUser={this.activateUser}/>}
+        {this.state.login && <Login activatePage={this.activatePage} activateUser={this.activateUser} userData={this.state.userData} userPotentialMatches={this.potentialMatches} potentialMatches={this.state.potentialMatches}/>}
         {this.state.profile && <Profile activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData}/>}
         {this.state.editPictures && <EditPictures activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData[0]}/>}
         {this.state.matches && <Matches activatePage={this.activatePage} userData={this.state.userData}/>}
+        {this.state.potentialMatch && <PotentialMatches activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData} potentialMatches={this.state.potentialMatches} userPotentialMatches={this.potentialMatches}/>}
         { this.state.chat && 
           <Chat activatePage={this.activatePage} 
                 match={this.state.currentMatch} 
