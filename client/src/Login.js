@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Navbar from './Navbar';
+import ExistingUserLogin from './ExistingUserLogin';
 import './Login.css';
 
 class Login extends React.Component {
@@ -8,12 +9,19 @@ class Login extends React.Component {
     this.state = {
       username: '',
       password: '',
+      loginError: false,
+      errorMsg: null,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.toggleLoginError = this.toggleLoginError.bind(this);
   }
 
-
+  toggleLoginError() {
+    this.setState({
+      loginError: !this.state.loginError,
+    })
+  }
 
   handleChange(event) {
     event.preventDefault();
@@ -21,7 +29,6 @@ class Login extends React.Component {
       [event.target.name]: event.target.value,
     });
   }
-
 
   handleSubmit(event) {
     event.preventDefault();
@@ -51,6 +58,10 @@ class Login extends React.Component {
     })
     .then(()=>this.props.activatePage(null, 'PROFILE', 'LOGIN'))
     .catch(error => {
+      this.setState({
+        loginError: true,
+        errorMsg: 'Username does not exist!',
+      });
       console.error('error: ', error.message);
     });
   }
@@ -66,23 +77,20 @@ class Login extends React.Component {
               <span className='pt-2 text-light'>Lovel up, playa'</span>
             </div>
           </div>
-          <div className='row d-flex justify-content-center'>
-            <div className='col-10 mt-5'>
-              <form onSubmit={this.handleSubmit}>
-                <div className='form-group'>
-                  <input type='email' className='form-control' placeholder='Username' value={this.state.email} onChange={this.handleChange} name='username' required/>
-                  <input type='password' className='form-control mt-1' placeholder='Password' value={this.state.password} onChange={this.handleChange} name='password' required />
-                </div>
-                <button type='submit' className='btn btn-outline-light full-width shadow-md'>Login</button>
-              </form>
+          { 
+            !this.state.loginError && 
+            <ExistingUserLogin handleChange={this.handleChange} handleSubmit={this.handleSubmit} parentState={this.state} activatePage={this.props.activatePage}/>
+          }
+          {
+            this.state.loginError &&
+            <div className='row mt-5 d-flex justify-content-center'>
+              <div className='col-10 d-flex flex-column justify-content-center border-light rounded'>
+                <span className='login-error-msg text-center w-100 mt-2'>{this.state.errorMsg}</span>
+                <button className='btn btn-light mt-3' onClick={(e) => this.props.activatePage(e, 'CREATE_PROFILE')}>Sign Up!</button>
+                <button className='btn btn-outline-light mt-3' onClick={this.toggleLoginError}>Try Again</button>
+              </div>
             </div>
-          </div>
-          <div className='row mt-3 d-flex justify-content-center'>
-            <div className='col-10 d-flex justify-content-between'>
-              <span className='text-underline' onClick={(e) => this.props.activatePage(e, 'CREATE_PROFILE', 'NAV')}>Create Account</span>
-              <span className='text-underline'>Forgot Password?</span>
-            </div>
-          </div>
+          }
         </div>
       </div>
     );
