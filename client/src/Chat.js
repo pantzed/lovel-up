@@ -78,23 +78,34 @@ class Chat extends React.Component {
   }
 
   componentDidUpdate() {
-    let targetMsg = this.state.messages.length - 1;
-    let scrollToElement = document.getElementById(`msg-${targetMsg}`);
-    scrollToElement.scrollIntoView();
+    if (this.state.messages.length - 1 > 0) {
+      let targetMsg = this.state.messages.length - 1;
+      let scrollToElement = document.getElementById(`msg-${targetMsg}`);
+      scrollToElement.scrollIntoView();
+    }
   }
 
   render() {
 
     const messages = this.state.messages;
+    const fakePhoto = 'https://www.hhcenter.org/wp-content/uploads/2017/02/person-placeholder.jpg';
 
     return (
       <div>
         <div className='chat-menu text-right'>
           <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'MATCHES', 'CHAT')}>Back</button>
         </div>
-        <div className='chat-match text-center'>
-          <h5>{`${this.props.match.first} ${this.props.match.last}`}</h5>
-          <h6>Lovel {this.props.match.level}</h6>
+        <div className='chat-match'>
+          <div className='chat-match-flex pl-4'>
+          <img src={this.props.match.photo_1 || fakePhoto}
+               className='img chat-match-img rounded-circle border'
+               alt='match'>
+          </img>
+          <div className='chat-match-info-flex pl-3'>
+            <span className='chat-match-name'>{`${this.props.match.first} ${this.props.match.last}`}</span>
+            <span className='chat-match-lovel'>Lovel: {this.props.match.level}</span>
+          </div>
+          </div>
         </div>
         <div id="messagesContainer" className='mb-5'>
           <ul id='chatStream' className='chat-stream mt-4 text-light'>
