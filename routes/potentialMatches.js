@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  const user_id = req.params.id;
+  const user_id = parseInt(req.params.id);
   console.log('fetch call worked:  ~~~', user_id);
   let likedMatchesArr = [];
   let potentialMatchesArr = [];
@@ -44,7 +44,7 @@ router.get('/:id', (req, res) => {
         for (let i=0; i<users.length; i++){
             let k=0;
             for (let j=0; j<likedMatchesArr.length; j++){
-                if(users[i].id===likedMatchesArr[j] || users[i].id===parseInt(user_id)){
+                if(users[i].id===likedMatchesArr[j] || users[i].id===parseInt(user_id) || (users[i].seeking_female===true && users[user_id].gender==='m') || (users[i].seeking_male===true && users[user_id].gender==='f')){
                     k++;
                 } 
             }
@@ -52,6 +52,7 @@ router.get('/:id', (req, res) => {
                 potentialMatchesArr.push(users[i]);
             }
         }
+        console.log('potential Matches: ',potentialMatchesArr);
         res.send(potentialMatchesArr);
     })
   })
