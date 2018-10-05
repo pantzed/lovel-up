@@ -36,6 +36,7 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
+
     this._isMounted = true;
     
     let messageValue = document.getElementById('m');
@@ -76,8 +77,16 @@ class Chat extends React.Component {
     });
   }
 
+  componentDidUpdate() {
+    let targetMsg = this.state.messages.length - 1;
+    let scrollToElement = document.getElementById(`msg-${targetMsg}`);
+    scrollToElement.scrollIntoView();
+  }
+
   render() {
+
     const messages = this.state.messages;
+
     return (
       <div>
         <div className='chat-menu text-right'>
@@ -88,13 +97,13 @@ class Chat extends React.Component {
           <h6>Lovel {this.props.match.level}</h6>
         </div>
         <div id="messagesContainer" className='mb-5'>
-        <ul className='chat-stream mt-4 text-light'>
+          <ul id='chatStream' className='chat-stream mt-4 text-light'>
             {messages.map((message, index)=> {
               if (message.user_id === this.props.userData[0].id) {
-                return <li key={index} className='py-3 pl-3 pr-5 my-1 align-self-end bubble-a'>{message.message}</li>
+                return <li key={index} id={`msg-${index}`} className='py-3 pl-3 pr-5 my-1 align-self-end bubble-a'>{message.message}</li>
               }
               else {
-                return  <li key={index} className='py-3 pl-3 pr-5 my-1 align-self-start bubble-b'>{message.message}</li>
+                return  <li key={index} id={`msg-${index}`} className='py-3 pl-3 pr-5 my-1 align-self-start bubble-b'>{message.message}</li>
               }
             })}
           </ul>
@@ -112,7 +121,6 @@ class Chat extends React.Component {
       </div>
     );
   }
-
 
   componentWillUnmount() {
     this._isMounted = false;

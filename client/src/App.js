@@ -145,7 +145,6 @@ class App extends Component {
     })
     .then((text) => JSON.parse(text))
     .then((data) => {
-      console.log(data);
       this.setState({
         userData: [data]
       });
