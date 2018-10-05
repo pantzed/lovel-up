@@ -22,12 +22,7 @@ class App extends Component {
       chat: false,
       currentMatch: null,
       potentialMatch: false,
-      userData: [{
-        first: 'Bill',
-        last: 'Bob',
-        birthdate: '29091992',
-        location: '78746',
-    }],
+      userData: [{}],
       potentialMatches: [{}],
   }
     this.activatePage = this.activatePage.bind(this);
@@ -154,6 +149,38 @@ class App extends Component {
     })
   }
 
+  addPoints(value) {
+    const nextUserData = this.state.userData[0];
+    nextUserData.total_exp += value;
+    nextUserData.level = (Math.floor(nextUserData.total_exp / 20) + 1);
+
+    fetch(`/users/${this.state.userData[0].id}/points`, { 
+      method: 'PATCH', 
+      mode: 'cors',
+      headers: {
+          "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(nextUserData)
+    })
+    .then((res, error) => {
+      if (res.status === 500) {
+        return Promise.reject(new Error("Something went wrong. Please try again"))
+      }
+      else {
+        return res.text();
+      }
+    })
+    .then((text) => JSON.parse(text))
+    .then((data) => {
+      this.setState({
+        userData: [data]
+      });
+    })
+    .catch((error) => {
+      console.error(error.message);
+    });
+  }
+
   render() {
     return (
       <div className='container-fluid full-height'>
@@ -161,10 +188,15 @@ class App extends Component {
         {this.state.createProfile && <CreateProfile activatePage={this.activatePage} activateUser={this.activateUser} />}
         {this.state.login && <Login activatePage={this.activatePage} activateUser={this.activateUser} userData={this.state.userData} userPotentialMatches={this.potentialMatches} potentialMatches={this.state.potentialMatches}/>}
         {this.state.profile && <Profile activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData}/>}
-        {this.state.editPictures && <EditPictures activatePage={this.activatePage}/>}
+        {this.state.editPictures && <EditPictures activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData[0]}/>}
         {this.state.matches && <Matches activatePage={this.activatePage} userData={this.state.userData}/>}
-        {this.state.chat && <Chat activatePage={this.activatePage} match={this.state.currentMatch} userData={this.state.userData}/>}
         {this.state.potentialMatch && <PotentialMatches activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData} potentialMatches={this.state.potentialMatches} userPotentialMatches={this.potentialMatches}/>}
+        { this.state.chat && 
+          <Chat activatePage={this.activatePage} 
+                match={this.state.currentMatch} 
+                userData={this.state.userData}
+                addPoints={this.addPoints}
+        />}
       </div>
     );
   }

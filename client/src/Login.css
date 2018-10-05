@@ -14,3 +14,8 @@
 .full-width {
   width: 100%;
 }
+
+.login-error-msg {
+  color: white;
+  font-size: 1.2em;
+}

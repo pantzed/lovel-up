@@ -7,6 +7,11 @@
     height: 200px;
 }
 
+.photo-error {
+    border-color: rgb(250, 69, 69);
+    border-width: 2px;
+    border-style: solid;
+}
 
 .mainImgSize {
     width: 100%;

@@ -36,6 +36,7 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
+
     this._isMounted = true;
     
     let messageValue = document.getElementById('m');
@@ -43,7 +44,7 @@ class Chat extends React.Component {
 
     submit.addEventListener("click", (event) => {
       event.preventDefault();
-
+      this.props.addPoints(1); // ++ One Point for sent message! ++
       const messageObj = {
         message: messageValue.value,
         user_id: this.props.userData[0].id,
@@ -52,6 +53,7 @@ class Chat extends React.Component {
       };
 
       socket.emit('chat message', messageObj);
+
       messageValue.value = '';
 
       fetch('/messages', {
@@ -75,25 +77,44 @@ class Chat extends React.Component {
     });
   }
 
+  componentDidUpdate() {
+    if (this.state.messages.length - 1 > 0) {
+      let targetMsg = this.state.messages.length - 1;
+      let scrollToElement = document.getElementById(`msg-${targetMsg}`);
+      scrollToElement.scrollIntoView();
+    }
+  }
+
   render() {
+
     const messages = this.state.messages;
+    const fakePhoto = 'https://www.hhcenter.org/wp-content/uploads/2017/02/person-placeholder.jpg';
+
     return (
       <div>
         <div className='chat-menu text-right'>
           <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'MATCHES', 'CHAT')}>Back</button>
         </div>
-        <div className='chat-match text-center'>
-          <h5>{`${this.props.match.first} ${this.props.match.last}`}</h5>
-          <h6>Lovel {this.props.match.level}</h6>
+        <div className='chat-match'>
+          <div className='chat-match-flex pl-4'>
+          <img src={this.props.match.photo_1 || fakePhoto}
+               className='img chat-match-img rounded-circle border'
+               alt='match'>
+          </img>
+          <div className='chat-match-info-flex pl-3'>
+            <span className='chat-match-name'>{`${this.props.match.first} ${this.props.match.last}`}</span>
+            <span className='chat-match-lovel'>Lovel: {this.props.match.level}</span>
+          </div>
+          </div>
         </div>
         <div id="messagesContainer" className='mb-5'>
-        <ul className='chat-stream mt-4 text-light'>
+          <ul id='chatStream' className='chat-stream mt-4 text-light'>
             {messages.map((message, index)=> {
               if (message.user_id === this.props.userData[0].id) {
-                return <li key={index} className='py-3 pl-3 pr-5 my-1 align-self-end bubble-a'>{message.message}</li>
+                return <li key={index} id={`msg-${index}`} className='py-3 pl-3 pr-5 my-1 align-self-end bubble-a'>{message.message}</li>
               }
               else {
-                return  <li key={index} className='py-3 pl-3 pr-5 my-1 align-self-start bubble-b'>{message.message}</li>
+                return  <li key={index} id={`msg-${index}`} className='py-3 pl-3 pr-5 my-1 align-self-start bubble-b'>{message.message}</li>
               }
             })}
           </ul>
@@ -111,7 +132,6 @@ class Chat extends React.Component {
       </div>
     );
   }
-
 
   componentWillUnmount() {
     this._isMounted = false;

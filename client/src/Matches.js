@@ -31,6 +31,9 @@ class Matches extends React.Component {
   }
 
   render() {
+
+    const fakePhoto = 'https://www.hhcenter.org/wp-content/uploads/2017/02/person-placeholder.jpg';
+
     return (
       <div>
         <Navbar activatePage={this.props.activatePage} active={'MATCHES'} />
@@ -44,7 +47,7 @@ class Matches extends React.Component {
                        key={index} 
                        onClick={(e) => this.props.activatePage(e, 'CHAT', 'NAV', match)}>
                     <div className='col-3 p-2'>
-                      <img src='https://www.hhcenter.org/wp-content/uploads/2017/02/person-placeholder.jpg' 
+                      <img src={match.photo_1 || fakePhoto}
                           className='img img-fluid rounded-circle border'
                           alt='match'>
                       </img>
