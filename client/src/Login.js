@@ -73,11 +73,7 @@ class Login extends React.Component {
         if (pMatches) {
           this.props.userPotentialMatches(pMatches);
          }
-
       })
-      .then(()=>{
-      })
-      
     })
     .catch(error => {
       this.setState({
