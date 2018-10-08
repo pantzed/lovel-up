@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Navbar from './Navbar';
 import './Matches.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Matches extends React.Component {
   constructor(props) {
@@ -36,7 +36,11 @@ class Matches extends React.Component {
 
     return (
       <div>
-        <Navbar activatePage={this.props.activatePage} active={'matches'} />
+        <nav className="p-2 d-flex justify-content-around fixed-bottom navbar-light bg-light">
+          <a className='text-primary text-center' role="button"> <FontAwesomeIcon icon='comment' className='iconSize'/><div className='fontSize'>Chats</div></a>
+          <a className='text-dark text-center' role="button" onClick={(e) => this.props.activatePage(e, 'POTENTIAL_MATCHES', 'MATCHES')}> <FontAwesomeIcon icon='list' className='iconSize'/><div className='fontSize'>Discover</div></a>
+          <a className='text-dark text-center' role="button" onClick={(e) => this.props.activatePage(e, 'PROFILE', 'MATCHES')}> <FontAwesomeIcon icon='user' className='iconSize'/><div className='fontSize'>Me</div></a>
+        </nav>
         <div className='row d-flex justify-content-center'>
           <div className='col-11 mt-3'>
             <h1>Matches</h1>

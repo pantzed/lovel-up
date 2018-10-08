@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './PotentialMatches.css';
-import Navbar from './Navbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 class PotentialMatches extends React.Component {
@@ -103,18 +103,17 @@ class PotentialMatches extends React.Component {
           <div>There are no more players to match with!</div>
           <div>Tell you friends to join to spread the word</div>
           </div>;
-        
- 
       }
-      
-
+    
       return (
-        
         <div>
-          <Navbar props={this.props} activatePage={this.props.activatePage} active={'profile'} />
+          <nav className="p-2 d-flex justify-content-around fixed-bottom navbar-light bg-light">
+            <a className='text-dark text-center' role="button" onClick={(e) => this.props.activatePage(e, 'MATCHES', 'POTENTIAL_MATCHES')}> <FontAwesomeIcon icon='comment' className='iconSize'/><div className='fontSize'>Chats</div></a>
+            <a className='text-primary text-center' role="button"> <FontAwesomeIcon icon='list' className='iconSize'/><div className='fontSize'>Discover</div></a>
+            <a className='text-dark text-center' role="button" onClick={(e) => this.props.activatePage(e, 'PROFILE', 'POTENTIAL_MATCHES')}> <FontAwesomeIcon icon='user' className='iconSize'/><div className='fontSize'>Me</div></a>
+          </nav>
           {matches}
         </div>
-    
       );
     }
   }

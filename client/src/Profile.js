@@ -1,8 +1,8 @@
 import * as React from 'react';
 import FormGroup from './FormGroup';
-import Navbar from './Navbar';
 import ProgressBar from './ProgressBar';
 import './Profile.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -61,10 +61,14 @@ class Profile extends React.Component {
 
     return (
       <div>
-        <Navbar props={this.props} activatePage={this.props.activatePage} active={'profile'} />
+        <nav className="p-2 d-flex justify-content-around fixed-bottom navbar-light bg-light">
+          <a className='text-dark text-center' role="button" onClick={(e) => this.props.activatePage(e, 'MATCHES', 'PROFILE')}> <FontAwesomeIcon icon='comment' className='iconSize'/><div className='fontSize'>Chats</div></a>
+          <a className='text-dark text-center' role="button" onClick={(e) => this.props.activatePage(e, 'POTENTIAL_MATCHES', 'PROFILE')}> <FontAwesomeIcon icon='list' className='iconSize'/><div className='fontSize'>Discover</div></a>
+          <a className='text-primary text-center' role="button"> <FontAwesomeIcon icon='user' className='iconSize'/><div className='fontSize'>Me</div></a>
+        </nav>
         <div className='row d-flex justify-content-center'>
           <div className='col-12 text-center'>
-            <h2>{`${user.first}'s Profile`}</h2>
+            <h2 className='p-3'>{`${user.first}'s Profile`}</h2>
             <img src={user.photo_1 || fakeImage}
                  className='img profile-photo' 
                  alt='your profile' /> 
@@ -104,6 +108,13 @@ class Profile extends React.Component {
             </form>
           </div>
         </div>
+
+        <div>
+          <div className='text-left'>
+            <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.handleLogout(e)}>Logout</button>
+          </div>
+        </div>
+
       </div>
     );
   }

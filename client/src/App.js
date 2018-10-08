@@ -29,6 +29,7 @@ class App extends Component {
     this.activateUser = this.activateUser.bind(this);
     this.addPoints = this.addPoints.bind(this);
     this.potentialMatches = this.potentialMatches.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   activatePage(event = null, next, prev, match = null) {
@@ -39,6 +40,13 @@ class App extends Component {
       [next]: !this.state[next],
       [prev]: !this.state[prev],
       currentMatch: match,
+    });
+  }
+
+  handleLogout(e){
+    this.activatePage(e, 'LOGIN', 'PROFILE');
+    this.setState({
+      userData: [],
     });
   }
 
@@ -91,7 +99,7 @@ class App extends Component {
         {this.state.nav && <Nav activatePage={this.activatePage}/>}
         {this.state.createProfile && <CreateProfile activatePage={this.activatePage} activateUser={this.activateUser} />}
         {this.state.login && <Login activatePage={this.activatePage} activateUser={this.activateUser} userData={this.state.userData} userPotentialMatches={this.potentialMatches} potentialMatches={this.state.potentialMatches}/>}
-        {this.state.profile && <Profile activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData}/>}
+        {this.state.profile && <Profile activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData} handleLogout={this.handleLogout}/>}
         {this.state.editPictures && <EditPictures activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData[0]}/>}
         {this.state.matches && <Matches activatePage={this.activatePage} userData={this.state.userData}/>}
         {this.state.potentialMatch && <PotentialMatches activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData} potentialMatches={this.state.potentialMatches} userPotentialMatches={this.potentialMatches}/>}
