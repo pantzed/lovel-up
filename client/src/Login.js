@@ -109,7 +109,7 @@ class Login extends React.Component {
             <div className='row mt-5 d-flex justify-content-center'>
               <div className='col-10 d-flex flex-column justify-content-center border-light rounded'>
                 <span className='login-error-msg text-center w-100 mt-2'>{this.state.errorMsg}</span>
-                <button className='btn btn-light mt-3' onClick={(e) => this.props.activatePage(e, 'createProfile')}>Sign Up!</button>
+                <button className='btn btn-light mt-3' onClick={(e) => this.props.activatePage(e, 'createProfile', 'login')}>Sign Up!</button>
                 <button className='btn btn-outline-light mt-3' onClick={this.toggleLoginError}>Try Again</button>
               </div>
             </div>

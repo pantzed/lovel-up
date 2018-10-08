@@ -47,7 +47,7 @@ class CreateProfile extends React.Component {
       this.props.activateUser(data);
     })
     .then(() => {
-      this.props.activatePage(null, 'profile', 'newUser');
+      this.props.activatePage(null, 'profile', 'createProfile');
     })
     .catch((error) => {
       console.error(error.message);
@@ -66,7 +66,7 @@ class CreateProfile extends React.Component {
     return (
       <div className='row bg-colorful'>
         <div className='col-12'>
-          <Navbar props={this.props} activatePage={this.props.activatePage} active={'profile'} />
+          <Navbar props={this.props} activatePage={this.props.activatePage} active={'createProfile'} />
           <div className='row d-flex justify-content-center'>
             <div className='col-10 mt-5 text-center'>
               <img src='../lovel-up-logo.png' className='img img-fluid' alt='Love el up logo'></img>
