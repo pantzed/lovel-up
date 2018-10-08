@@ -14,6 +14,7 @@ class Chat extends React.Component {
     this.getMessageHistory();
     this._isMounted = false;
     this.getMessageHistory = this.getMessageHistory.bind(this);
+    socket.open();
   }
 
   getMessageHistory() {
@@ -137,6 +138,7 @@ class Chat extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+    socket.close();
   }
 
 }
