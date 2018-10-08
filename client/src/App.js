@@ -27,6 +27,7 @@ class App extends Component {
   }
     this.activatePage = this.activatePage.bind(this);
     this.activateUser = this.activateUser.bind(this);
+    this.addPoints = this.addPoints.bind(this);
     this.potentialMatches = this.potentialMatches.bind(this);
   }
 
