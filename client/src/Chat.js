@@ -42,11 +42,11 @@ class Chat extends React.Component {
     this._isMounted = true;
     
     let messageValue = document.getElementById('m');
-    let submit = document.getElementById('submit');
+    let msgForm = document.getElementById('msgForm');
 
-    submit.addEventListener("click", (event) => {
+    msgForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      this.props.addPoints(1); // ++ One Point for sent message! ++
+
       const messageObj = {
         message: messageValue.value,
         user_id: this.props.userData[0].id,
@@ -55,6 +55,7 @@ class Chat extends React.Component {
       };
 
       socket.emit('chat message', messageObj);
+      this.props.addPoints(1); // ++ One Point for sent message! ++
 
       messageValue.value = '';
 
@@ -124,9 +125,9 @@ class Chat extends React.Component {
         <div className='chat-input'>
           <div className='col-11 mt-3'>
             <ProgressBar width={100} height={10} userData={this.props.userData[0]} justify={'start'} alignText={'left'}/>
-            <form action='' className='form-inline mt-4'>
+            <form id='msgForm' action='' className='form-inline mt-4'>
               <div className='row form-group m-0'>
-                <input id='m' className="form-control" type="text" placeholder="Default input" />
+                <input id='m' className="form-control" type="text" placeholder="Default input" autoComplete='off' required/>
               </div>
               <button id='submit' type='submit' className='btn btn-outline-primary ml-2'>Send</button>
             </form>
