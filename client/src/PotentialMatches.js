@@ -111,7 +111,7 @@ class PotentialMatches extends React.Component {
       return (
         
         <div>
-          <Navbar props={this.props} activatePage={this.props.activatePage} active={'PROFILE'} />
+          <Navbar props={this.props} activatePage={this.props.activatePage} active={'profile'} />
           {matches}
         </div>
     

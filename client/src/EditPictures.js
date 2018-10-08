@@ -85,7 +85,7 @@ class EditPictures extends React.Component {
     return (
       <div>
         <div className='d-flex justify-content-end mt-2 py-3'>
-          <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'PROFILE', 'EDIT_PICTURES')}>Back</button>
+          <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'profile', 'editPictures')}>Back</button>
         </div>
         <div className='row d-flex justify-content-center'>
           <div className='col-12 text-center'>

@@ -57,7 +57,7 @@ class Login extends React.Component {
         this.props.activateUser([data]);
       }
     })
-    .then(()=>this.props.activatePage(null, 'PROFILE', 'LOGIN'))
+    .then(()=>this.props.activatePage(null, 'profile', 'login'))
     .then(()=>{
       console.log('fetch call worked');
       fetch(`/potentialMatches/${this.props.userData[0].id}`, {
@@ -93,7 +93,7 @@ class Login extends React.Component {
     return (
       <div className='row bg-colorful'>
         <div className='col-12'>
-          <Navbar props={this.props} activatePage={this.props.activatePage} active={'LOGIN'} />
+          <Navbar props={this.props} activatePage={this.props.activatePage} active={'login'} />
           <div className='row d-flex justify-content-center'>
             <div className='col-10 mt-5 text-center'>
               <img src='../lovel-up-logo.png' className='img img-fluid' alt='Love el up logo'></img>
@@ -109,7 +109,7 @@ class Login extends React.Component {
             <div className='row mt-5 d-flex justify-content-center'>
               <div className='col-10 d-flex flex-column justify-content-center border-light rounded'>
                 <span className='login-error-msg text-center w-100 mt-2'>{this.state.errorMsg}</span>
-                <button className='btn btn-light mt-3' onClick={(e) => this.props.activatePage(e, 'CREATE_PROFILE')}>Sign Up!</button>
+                <button className='btn btn-light mt-3' onClick={(e) => this.props.activatePage(e, 'createProfile')}>Sign Up!</button>
                 <button className='btn btn-outline-light mt-3' onClick={this.toggleLoginError}>Try Again</button>
               </div>
             </div>

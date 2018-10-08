@@ -36,7 +36,7 @@ class Matches extends React.Component {
 
     return (
       <div>
-        <Navbar activatePage={this.props.activatePage} active={'MATCHES'} />
+        <Navbar activatePage={this.props.activatePage} active={'matches'} />
         <div className='row d-flex justify-content-center'>
           <div className='col-11 mt-3'>
             <h1>Matches</h1>
@@ -45,7 +45,7 @@ class Matches extends React.Component {
                 return (
                   <div className='row mt-3 d-flex align-items-center border rounded' 
                        key={index} 
-                       onClick={(e) => this.props.activatePage(e, 'CHAT', 'NAV', match)}>
+                       onClick={(e) => this.props.activatePage(e, 'chat', 'nav', match)}>
                     <div className='col-3 p-2'>
                       <img src={match.photo_1 || fakePhoto}
                           className='img img-fluid rounded-circle border'

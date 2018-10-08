@@ -95,7 +95,7 @@ class Chat extends React.Component {
     return (
       <div>
         <div className='chat-menu text-right'>
-          <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'MATCHES', 'CHAT')}>Back</button>
+          <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'matches', 'chat')}>Back</button>
         </div>
         <div className='chat-match'>
           <div className='chat-match-flex pl-4'>

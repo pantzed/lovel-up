@@ -35,108 +35,11 @@ class App extends Component {
     if (event) {
       event.preventDefault();
     }
-    switch(next) {
-      case 'LOGIN':
-        this.setState({
-          login: true,
-          createProfile: false,
-          profile: false,
-          editPictures: false,
-          matches: false,
-          chat: false,
-          nav: false,
-          potentialMatch: false
-        });
-        break;
-      case 'CREATE_PROFILE':
-        this.setState({
-          login: false,
-          createProfile: true,
-          profile: false,
-          editPictures: false,
-          matches: false,
-          chat: false,
-          nav: false,
-          potentialMatch: false
-        });
-        break;
-        
-      case 'PROFILE':
-        this.setState({
-          login: false,
-          createProfile: false,
-          profile: true,
-          editPictures: false,
-          matches: false,
-          chat: false,
-          nav: false,
-          potentialMatch: false
-        });
-        break;
-      case 'EDIT_PICTURES':
-        this.setState({
-          login: false,
-          createProfile: false,
-          profile: false,
-          editPictures: true,
-          matches: false,
-          chat: false,
-          nav: false,
-          potentialMatch: false
-        });
-        break;
-      case 'MATCHES':
-        this.setState({
-          login: false,
-          createProfile: false,
-          profile: false,
-          editPictures: false,
-          matches: true,
-          chat: false,
-          nav: false,
-          potentialMatch: false
-        });
-        break;
-      case 'CHAT':
-        this.setState({
-          login: false,
-          createProfile: false,
-          profile: false,
-          editPictures: false,
-          matches: false,
-          chat: true,
-          nav: false,
-          currentMatch: match,
-          potentialMatch: false
-        });
-        break;
-      case 'NAV':
-        this.setState({
-          login: false,
-          createProfile: false,
-          profile: false,
-          editPictures: false,
-          matches: false,
-          chat: false,
-          nav: true,
-          potentialMatch: false
-        });
-        break;
-      case 'POTENTIAL_MATCHES':
-        this.setState({
-          login: false,
-          createProfile: false,
-          profile: false,
-          editPictures: false,
-          matches: false,
-          chat: false,
-          nav: false,
-          potentialMatch: true
-        });
-        break;
-      default:
-      break;
-    }
+    this.setState({
+      [next]: !this.state[next],
+      [prev]: !this.state[prev],
+      currentMatch: match,
+    });
   }
 
   activateUser(userData) {

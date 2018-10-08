@@ -11,7 +11,7 @@ class Navbar extends React.Component {
     return (
       <div className='row py-3 text-dark'>
         <div className='col-12 d-flex justify-content-end align-items-center'>
-          <button type='button' className='btn btn-outline-light' onClick={(e) => this.props.activatePage(e, 'NAV', this.props.active)}>
+          <button type='button' className='btn btn-outline-light' onClick={(e) => this.props.activatePage(e, 'nav', `${this.props.active}`)}>
             <FontAwesomeIcon icon='bars' className='text-dark'/>
           </button>
         </div>
