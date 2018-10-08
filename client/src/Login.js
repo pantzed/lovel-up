@@ -59,7 +59,6 @@ class Login extends React.Component {
     })
     .then(()=>this.props.activatePage(null, 'profile', 'login'))
     .then(()=>{
-      console.log('fetch call worked');
       fetch(`/potentialMatches/${this.props.userData[0].id}`, {
         method: 'GET', 
         mode: 'cors',
