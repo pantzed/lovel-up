@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ProgressBar from'./ProgressBar';
 import './Chat.css';
 import io from 'socket.io-client';
 
@@ -14,6 +15,7 @@ class Chat extends React.Component {
     this.getMessageHistory();
     this._isMounted = false;
     this.getMessageHistory = this.getMessageHistory.bind(this);
+    socket.open();
   }
 
   getMessageHistory() {
@@ -41,11 +43,11 @@ class Chat extends React.Component {
     this._isMounted = true;
     
     let messageValue = document.getElementById('m');
-    let submit = document.getElementById('submit');
+    let msgForm = document.getElementById('msgForm');
 
-    submit.addEventListener("click", (event) => {
+    msgForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      this.props.addPoints(1); // ++ One Point for sent message! ++
+
       const messageObj = {
         message: messageValue.value,
         user_id: this.props.userData[0].id,
@@ -54,6 +56,7 @@ class Chat extends React.Component {
       };
 
       socket.emit('chat message', messageObj);
+      this.props.addPoints(1); // ++ One Point for sent message! ++
 
       messageValue.value = '';
 
@@ -94,7 +97,7 @@ class Chat extends React.Component {
     return (
       <div>
         <div className='chat-menu text-right'>
-          <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'MATCHES', 'CHAT')}>Back</button>
+          <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'matches', 'chat')}>Back</button>
         </div>
 
         <div className='chat-match'>
@@ -122,10 +125,11 @@ class Chat extends React.Component {
           </ul>
         </div>
         <div className='chat-input'>
-          <div className='col-12 mt-3'>
-            <form action='' className='form-inline'>
-              <div className='form-group m-0'>
-                <input id='m' className="form-control" type="text" placeholder="Default input" />
+          <div className='col-11 mt-3'>
+            <ProgressBar width={100} height={10} userData={this.props.userData[0]} justify={'start'} alignText={'left'}/>
+            <form id='msgForm' action='' className='form-inline mt-4'>
+              <div className='row form-group m-0'>
+                <input id='m' className="form-control" type="text" placeholder="Default input" autoComplete='off' required/>
               </div>
               <button id='submit' type='submit' className='btn btn-outline-primary ml-2'>Send</button>
             </form>
@@ -137,6 +141,7 @@ class Chat extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+    socket.close();
   }
 
 }

@@ -3,7 +3,6 @@ import './PotentialMatches.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-
 class PotentialMatches extends React.Component {
     constructor(props) {
       super(props);
@@ -108,9 +107,6 @@ class PotentialMatches extends React.Component {
     
       return (
         <div>
-          {/* <div className='chat-menu text-right'>
-            <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'PROFILE', 'POTENTIAL_MATCHES')}>Back</button>
-          </div> */}
           <nav className="p-2 d-flex justify-content-around fixed-bottom navbar-light bg-light">
             <a className='text-dark text-center' role="button" onClick={(e) => this.props.activatePage(e, 'MATCHES', 'POTENTIAL_MATCHES')}> <FontAwesomeIcon icon='comment' className='iconSize'/><div className='fontSize'>Chats</div></a>
             <a className='text-primary text-center' role="button"> <FontAwesomeIcon icon='list' className='iconSize'/><div className='fontSize'>Discover</div></a>

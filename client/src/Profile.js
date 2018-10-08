@@ -1,5 +1,6 @@
 import * as React from 'react';
 import FormGroup from './FormGroup';
+import ProgressBar from './ProgressBar';
 import './Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -15,7 +16,6 @@ class Profile extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('handle Submit Values: ', this.state.user[0]);
     fetch(`/users/${this.state.user[0].id}`, { 
       method: 'PATCH', 
       mode: 'cors',
@@ -58,24 +58,14 @@ class Profile extends React.Component {
     const dateNow = Date.now();
     const birthdateParsed = Date.parse(user.birthdate);
     const years = Math.floor((dateNow - birthdateParsed)/1000/60/60/24/365);
-    const progressContainer = {
-      width: `100%`,
-      height: '10px',
-    };
-    const progressFill = {
-      width: `${((user.total_exp % 20)/20) * 100}%`,
-      height: '100%',
-    };
 
     return (
       <div>
-        {/* <Navbar props={this.props} activatePage={this.props.activatePage} active={'PROFILE'} /> */}
         <nav className="p-2 d-flex justify-content-around fixed-bottom navbar-light bg-light">
           <a className='text-dark text-center' role="button" onClick={(e) => this.props.activatePage(e, 'MATCHES', 'PROFILE')}> <FontAwesomeIcon icon='comment' className='iconSize'/><div className='fontSize'>Chats</div></a>
           <a className='text-dark text-center' role="button" onClick={(e) => this.props.activatePage(e, 'POTENTIAL_MATCHES', 'PROFILE')}> <FontAwesomeIcon icon='list' className='iconSize'/><div className='fontSize'>Discover</div></a>
           <a className='text-primary text-center' role="button"> <FontAwesomeIcon icon='user' className='iconSize'/><div className='fontSize'>Me</div></a>
         </nav>
-
         <div className='row d-flex justify-content-center'>
           <div className='col-12 text-center'>
             <h2 className='p-3'>{`${user.first}'s Profile`}</h2>
@@ -83,18 +73,11 @@ class Profile extends React.Component {
                  className='img profile-photo' 
                  alt='your profile' /> 
             <div className='text-right'>
-              <button onClick={(e) => this.props.activatePage(e, 'EDIT_PICTURES', 'PROFILE')} type='button' className='btn btn-light btn-sm n-mt-6 mr-2 shadow-lg'>Edit Pictures</button>
+              <button onClick={(e) => this.props.activatePage(e, 'editPictures', 'profile')} type='button' className='btn btn-light btn-sm n-mt-6 mr-2 shadow-lg'>Edit Pictures</button>
             </div>
           </div>
         </div>
-        <div className='row d-flex justify-content-center'>
-          <div className='col-11 d-flex flex-column justify-content-center'>
-            <h6 className='p1-2 text-center'>Lovel Progress ({user.total_exp % 20}/{'20'})</h6>
-            <div className='progress-container rounded' style={progressContainer}>
-              <div className='progress-bar rounded' style={progressFill}></div>
-            </div>
-          </div>
-        </div>
+        <ProgressBar width={100} height={10} userData={user} justify={'center'} alignText={'center'}/>
         <div className='row mb-5 mt-4 d-flex justify-content-center'>
           <div className='col-5 text-center'>
             <h6>Total Exp</h6>

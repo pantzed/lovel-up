@@ -36,9 +36,6 @@ class Matches extends React.Component {
 
     return (
       <div>
-        {/* <div className='chat-menu text-right'>
-          <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'PROFILE', 'MATCHES')}>Back</button>
-        </div> */}
         <nav className="p-2 d-flex justify-content-around fixed-bottom navbar-light bg-light">
           <a className='text-primary text-center' role="button"> <FontAwesomeIcon icon='comment' className='iconSize'/><div className='fontSize'>Chats</div></a>
           <a className='text-dark text-center' role="button" onClick={(e) => this.props.activatePage(e, 'POTENTIAL_MATCHES', 'MATCHES')}> <FontAwesomeIcon icon='list' className='iconSize'/><div className='fontSize'>Discover</div></a>
@@ -52,7 +49,7 @@ class Matches extends React.Component {
                 return (
                   <div className='row mt-3 d-flex align-items-center border rounded' 
                        key={index} 
-                       onClick={(e) => this.props.activatePage(e, 'CHAT', 'NAV', match)}>
+                       onClick={(e) => this.props.activatePage(e, 'chat', 'matches', match)}>
                     <div className='col-3 p-2'>
                       <img src={match.photo_1 || fakePhoto}
                           className='img img-fluid rounded-circle border'
