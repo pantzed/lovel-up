@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FormGroup from './FormGroup';
 import Navbar from './Navbar';
+import ProgressBar from './ProgressBar';
 import './Profile.css';
 
 class Profile extends React.Component {
@@ -15,7 +16,6 @@ class Profile extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('handle Submit Values: ', this.state.user[0]);
     fetch(`/users/${this.state.user[0].id}`, { 
       method: 'PATCH', 
       mode: 'cors',
@@ -58,14 +58,6 @@ class Profile extends React.Component {
     const dateNow = Date.now();
     const birthdateParsed = Date.parse(user.birthdate);
     const years = Math.floor((dateNow - birthdateParsed)/1000/60/60/24/365);
-    const progressContainer = {
-      width: `100%`,
-      height: '10px',
-    };
-    const progressFill = {
-      width: `${((user.total_exp % 20)/20) * 100}%`,
-      height: '100%',
-    };
 
     return (
       <div>
@@ -81,14 +73,7 @@ class Profile extends React.Component {
             </div>
           </div>
         </div>
-        <div className='row d-flex justify-content-center'>
-          <div className='col-11 d-flex flex-column justify-content-center'>
-            <h6 className='p1-2 text-center'>Lovel Progress ({user.total_exp % 20}/{'20'})</h6>
-            <div className='progress-container rounded' style={progressContainer}>
-              <div className='progress-bar rounded' style={progressFill}></div>
-            </div>
-          </div>
-        </div>
+        <ProgressBar width={100} height={10} userData={user} justify={'center'} alignText={'center'}/>
         <div className='row mb-5 mt-4 d-flex justify-content-center'>
           <div className='col-5 text-center'>
             <h6>Total Exp</h6>

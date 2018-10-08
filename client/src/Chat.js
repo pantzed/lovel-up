@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ProgressBar from'./ProgressBar';
 import './Chat.css';
 import io from 'socket.io-client';
 
@@ -120,9 +121,10 @@ class Chat extends React.Component {
           </ul>
         </div>
         <div className='chat-input'>
-          <div className='col-12 mt-3'>
-            <form action='' className='form-inline'>
-              <div className='form-group m-0'>
+          <div className='col-11 mt-3'>
+            <ProgressBar width={100} height={10} userData={this.props.userData[0]} justify={'start'} alignText={'left'}/>
+            <form action='' className='form-inline mt-4'>
+              <div className='row form-group m-0'>
                 <input id='m' className="form-control" type="text" placeholder="Default input" />
               </div>
               <button id='submit' type='submit' className='btn btn-outline-primary ml-2'>Send</button>

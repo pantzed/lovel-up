@@ -17,9 +17,11 @@
 .chat-input {
   background-color: white;
   border-top: 1px solid #d4d4d4;
+  display: flex;
+  justify-content: center;
   position: fixed;
   bottom: 0;
-  height: 10%;
+  height: 20%;
   width: 100%;
   padding-bottom: 5%;
   margin-left: -15px;

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import './PotentialMatches.css';
 import Navbar from './Navbar';
-import FormGroup from './FormGroup';
 
 
 class PotentialMatches extends React.Component {
