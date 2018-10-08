@@ -2,6 +2,7 @@ import * as React from 'react';
 import './Chat.css';
 import io from 'socket.io-client';
 
+
 let socket = io.connect('https://lovel-up-socket.herokuapp.com/');
 
 class Chat extends React.Component {
@@ -95,6 +96,7 @@ class Chat extends React.Component {
         <div className='chat-menu text-right'>
           <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'MATCHES', 'CHAT')}>Back</button>
         </div>
+
         <div className='chat-match'>
           <div className='chat-match-flex pl-4'>
           <img src={this.props.match.photo_1 || fakePhoto}

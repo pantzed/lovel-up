@@ -108,7 +108,6 @@ router.patch('/:id', (req, res, next) => {
         });
       }
       if(match[i].user_a===match_id && match[i].user_b===user_id){
-        console.log('changing user_b', match[i]);
         return knex('matches')
         .update({
             match_b: true,
@@ -120,7 +119,6 @@ router.patch('/:id', (req, res, next) => {
       }
     }
 
-    console.log('should be inserting: ');
     return knex('matches')
     .orderBy('id', 'asc')
     .insert({

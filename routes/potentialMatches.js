@@ -44,7 +44,8 @@ router.get('/:id', (req, res) => {
         for (let i=0; i<users.length; i++){
             let k=0;
             for (let j=0; j<likedMatchesArr.length; j++){
-                if(users[i].id===likedMatchesArr[j] || users[i].id===parseInt(user_id) || (users[i].seeking_female===true && users[user_id].gender==='m') || (users[i].seeking_male===true && users[user_id].gender==='f')){
+                if(users[i].id===likedMatchesArr[j] || users[i].id===parseInt(user_id) || 
+                (users[i].seeking_female===true && users[user_id].gender==='m') || (users[i].seeking_male===true && users[user_id].gender==='f')){
                     k++;
                 } 
             }
