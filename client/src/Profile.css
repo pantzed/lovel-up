@@ -47,3 +47,7 @@
 .fontSize {
   font-size: 1em;
 }
+
+.fullWidth {
+  width: 100%;
+}
