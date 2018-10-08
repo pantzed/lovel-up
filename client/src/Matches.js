@@ -45,7 +45,7 @@ class Matches extends React.Component {
                 return (
                   <div className='row mt-3 d-flex align-items-center border rounded' 
                        key={index} 
-                       onClick={(e) => this.props.activatePage(e, 'chat', 'nav', match)}>
+                       onClick={(e) => this.props.activatePage(e, 'chat', 'matches', match)}>
                     <div className='col-3 p-2'>
                       <img src={match.photo_1 || fakePhoto}
                           className='img img-fluid rounded-circle border'

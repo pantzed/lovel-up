@@ -35,7 +35,6 @@ class App extends Component {
     if (event) {
       event.preventDefault();
     }
-    console.log(next, prev);
     this.setState({
       [next]: !this.state[next],
       [prev]: !this.state[prev],
