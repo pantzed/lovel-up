@@ -104,19 +104,18 @@ class Profile extends React.Component {
                 <label htmlFor='description'>Description</label>
                 <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
               </div>
-              <div className='text-right'>
-                <button type='submit' className='btn btn-outline-primary'>Update</button>
+              <div className='class="row d-flex justify-content-between"'>
+              <div className='col-6 text-center'>
+                <button type='button' className='btn btn-outline-secondary mb-5'onClick={(e) => this.props.handleLogout(e)}>Logout</button>
+              </div>
+              <div className='col-6 text-center'>
+                <button type='submit' className='btn btn-outline-primary mb-5'>Update</button>
+              </div>
               </div>
             </form>
+            <div className='mb-5'></div>
           </div>
         </div>
-
-        <div>
-          <div className='text-left'>
-            <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.handleLogout(e)}>Logout</button>
-          </div>
-        </div>
-
       </div>
     );
   }
