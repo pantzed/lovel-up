@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Navbar from './Navbar';
 import ExistingUserLogin from './ExistingUserLogin';
 import './Login.css';
 
@@ -88,7 +87,6 @@ class Login extends React.Component {
     return (
       <div className='row bg-colorful'>
         <div className='col-12'>
-          <Navbar props={this.props} activatePage={this.props.activatePage} active={'login'} />
           <div className='row d-flex justify-content-center'>
             <div className='col-10 mt-5 text-center'>
               <img src='../lovel-up-logo.png' className='img img-fluid' alt='Love el up logo'></img>
