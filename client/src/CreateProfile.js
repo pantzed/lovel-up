@@ -71,7 +71,7 @@ class CreateProfile extends React.Component {
               <span className='pt-2 text-light'>Lovel up, playa'</span>
             </div>
           </div>
-          <div className='row'>
+          <div className='row mt-5'>
             <div className='col-12'>
               <form onSubmit={this.handleSubmit}>
                 <SignUpForm id={'first'} type={'text'} placeholder={'First Name'} handleChange={this.handleChange}/>
@@ -114,6 +114,11 @@ class CreateProfile extends React.Component {
               </form>
             </div>
           </div>
+          <div className='row mt-3 mb-5'>
+          <div className='col-11'>
+            <span className='text-underline' onClick={(e) => this.props.activatePage(e, 'login', 'createProfile')}> Back to Login Page</span>
+          </div>
+        </div>
         </div>
       </div>
     );

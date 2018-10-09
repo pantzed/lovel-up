@@ -70,7 +70,7 @@ class Profile extends React.Component {
         </nav>
         <div className='row d-flex justify-content-center'>
           <div className='col-12 text-center'>
-            <h2 className='p-3'>{`${user.first}'s Profile`}</h2>
+            <h2 className='pb-4 pt-5'>{`${user.first}'s Profile`}</h2>
             <img src={user.photo_1 || fakeImage}
                  className='img profile-photo' 
                  alt='your profile' /> 

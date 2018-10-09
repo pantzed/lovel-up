@@ -44,8 +44,8 @@ class Matches extends React.Component {
           </div>
         </nav>
         <div className='row d-flex justify-content-center'>
-          <div className='col-11 mt-3'>
-            <h1>Matches</h1>
+          <div className='col-11 text-center'>
+            <h2 className='pb-4 pt-5'>Matches</h2>
             {
               this.state.matches.map((match, index) => {
                 return (
