@@ -45,6 +45,9 @@ class CreateProfile extends React.Component {
     .then((data) => {
       this.props.activateUser(data);
     })
+    .then(()=>{
+      this.props.handlePotentialMatches();
+    })
     .then(() => {
       this.props.activatePage(null, 'profile', 'createProfile');
     })

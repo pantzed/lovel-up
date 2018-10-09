@@ -22,14 +22,36 @@ class App extends Component {
       chat: false,
       currentMatch: null,
       potentialMatch: false,
-      userData: [{}],
-      potentialMatches: [{}],
+      userData: [],
+      potentialMatches: [],
   }
     this.activatePage = this.activatePage.bind(this);
     this.activateUser = this.activateUser.bind(this);
     this.addPoints = this.addPoints.bind(this);
     this.potentialMatches = this.potentialMatches.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handlePotentialMatches = this.handlePotentialMatches.bind(this);
+  }
+
+  handlePotentialMatches() {
+    fetch(`/potentialMatches/${this.state.userData[0].id}`, {
+      method: 'GET', 
+      mode: 'cors',
+      redirect: "follow",
+      referrer: "no-referrer"
+    })
+    .then((res) => {
+      return res.text()
+    })
+    .then((text) => JSON.parse(text))
+    .then((pMatches) => {
+      if (pMatches) {
+        this.potentialMatches(pMatches);
+       }
+    })
+    .catch((error) => {
+      console.error(error.message);
+    });
   }
 
   activatePage(event = null, next, prev, match = null) {
@@ -97,8 +119,8 @@ class App extends Component {
     return (
       <div className='container-fluid full-height'>
         {this.state.nav && <Nav activatePage={this.activatePage}/>}
-        {this.state.createProfile && <CreateProfile activatePage={this.activatePage} activateUser={this.activateUser} />}
-        {this.state.login && <Login activatePage={this.activatePage} activateUser={this.activateUser} userData={this.state.userData} userPotentialMatches={this.potentialMatches} potentialMatches={this.state.potentialMatches}/>}
+        {this.state.createProfile && <CreateProfile activatePage={this.activatePage} activateUser={this.activateUser} handlePotentialMatches={this.handlePotentialMatches}/>}
+        {this.state.login && <Login activatePage={this.activatePage} activateUser={this.activateUser} userData={this.state.userData} userPotentialMatches={this.potentialMatches} potentialMatches={this.state.potentialMatches} handlePotentialMatches={this.handlePotentialMatches}/>}
         {this.state.profile && <Profile activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData} handleLogout={this.handleLogout}/>}
         {this.state.editPictures && <EditPictures activateUser={this.activateUser} activatePage={this.activatePage} userData={this.state.userData[0]}/>}
         {this.state.matches && <Matches activatePage={this.activatePage} userData={this.state.userData}/>}
