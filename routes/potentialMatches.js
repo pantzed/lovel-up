@@ -41,19 +41,24 @@ router.get('/:id', (req, res) => {
   .then(()=>{
     knex('users')
     .then(users=>{
-        for (let i=0; i<users.length; i++){
-            let k=0;
-            for (let j=0; j<likedMatchesArr.length; j++){
-                if(users[i].id===likedMatchesArr[j] || users[i].id===parseInt(user_id) || 
-                (users[i].seeking_female===true && users[user_id].gender==='m') || (users[i].seeking_male===true && users[user_id].gender==='f')){
-                    k++;
-                } 
-            }
-            if(k===0){
-                potentialMatchesArr.push(users[i]);
-            }
+        function checkMatches(match){
+          for (let j=0; j<likedMatchesArr.length; j++){
+            if((match.id===likedMatchesArr[j])){
+                return true;
+            } 
+          }
+          return false;
         }
-        console.log('potential Matches: ',potentialMatchesArr);
+        for (let i=0; i<users.length; i++){
+
+            if(!((users[i].id===user_id) || (users[i].seeking_female===true && users[user_id].gender==='m') || 
+            (users[i].seeking_male===true && users[user_id].gender==='f') || (users[i].gender==='m' && users[user_id].seeking_male===false) ||  
+            (users[i].gender==='f' && users[user_id].seeking_female===false) || checkMatches(users[i]))) {
+                potentialMatchesArr.push(users[i]);
+                }
+        }
+    })
+    .then(()=>{
         res.send(potentialMatchesArr);
     })
   })

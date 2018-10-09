@@ -56,23 +56,25 @@ class Login extends React.Component {
         this.props.activateUser([data]);
       }
     })
-    .then(()=>this.props.activatePage(null, 'profile', 'login'))
+    .then(()=>this.props.handlePotentialMatches())
     .then(()=>{
-      fetch(`/potentialMatches/${this.props.userData[0].id}`, {
-        method: 'GET', 
-        mode: 'cors',
-        redirect: "follow",
-        referrer: "no-referrer"
-      })
-      .then((res) => {
-        return res.text()
-      })
-      .then((text) => JSON.parse(text))
-      .then((pMatches) => {
-        if (pMatches) {
-          this.props.userPotentialMatches(pMatches);
-         }
-      })
+      // fetch(`/potentialMatches/${this.props.userData[0].id}`, {
+      //   method: 'GET', 
+      //   mode: 'cors',
+      //   redirect: "follow",
+      //   referrer: "no-referrer"
+      // })
+      // .then((res) => {
+      //   return res.text()
+      // })
+      // .then((text) => JSON.parse(text))
+      // .then((pMatches) => {
+      //   if (pMatches) {
+      //     this.props.userPotentialMatches(pMatches);
+      //    }
+      // })
+      
+      this.props.activatePage(null, 'profile', 'login');
     })
     .catch(error => {
       this.setState({
