@@ -91,8 +91,8 @@ class PotentialMatches extends React.Component {
               <div className='d-flex justify-content-between'>
                 <button type='button' className='btn btn-outline-danger full-width shadow-md col-5' onClick={(e) => this.nextUser(e, false)} >Pass</button>
                 <button type='button' className='btn btn-outline-primary full-width shadow-md col-5'onClick={(e) => this.nextUser(e, true)}>Like</button>
-
               </div>
+
             </div>
           </div>
         </div>
@@ -100,8 +100,16 @@ class PotentialMatches extends React.Component {
       else { 
           
         matches=<div>
-          <div>There are no more players to match with!</div>
-          <div>Tell you friends to join to spread the word</div>
+          <div className=''>
+          <div className='pt-5'></div>
+          <div className='mt-5 pt-5 d-flex justify-content-center align-items-center flex-column'>
+            <img src='lovel-up.ico'
+                className='p-2 img img-fluid'
+                alt='lovel-up'/>
+            <h3 className='p-2 text-center'>Looks like you're out of players to match with!</h3>
+            <h5 className='p-2 text-center text-secondary'>Check back soon!</h5>
+          </div>
+          </div>
           </div>;
       }
     
