@@ -112,7 +112,7 @@ class Chat extends React.Component {
           </div>
           </div>
         </div>
-        <div id="messagesContainer" className='mb-5'>
+        <div id="messagesContainer" className='chat-stream-container'>
           <ul id='chatStream' className='chat-stream mt-4 text-light'>
             {messages.map((message, index)=> {
               if (message.user_id === this.props.userData[0].id) {

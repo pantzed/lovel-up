@@ -7,11 +7,16 @@
   flex-direction: column;
   justify-content: flex-end;
   list-style: none;
-  height: 100%;
-  min-height: 100vh;
-  margin-bottom: 200px;
+  height: 50%;
+  min-height: 80vh;
   margin-top: 200px;
   padding: 0;
+}
+
+.chat-stream-container {
+  height: 50%;
+  min-height: 80vh;
+  padding-bottom: 200px;
 }
 
 .chat-input {
