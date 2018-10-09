@@ -10,9 +10,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', (req, res, next) => {
-    console.log('working');
     let currentUser = null;
-    // delete req.body.confirm_password;
 
     knex('users')
         .where('username', req.body.username)
@@ -22,10 +20,7 @@ router.post('/', (req, res, next) => {
                 return Promise.reject(usernameDoesntExist);
             } else {
                 currentUser = userArr[0];
-                let hashedPassword = currentUser.password;
-                
-
-                
+                let hashedPassword = currentUser.password;       
                 return bcrypt.compare(req.body.password, hashedPassword);
             }
         })

@@ -16,7 +16,6 @@ router.get('/', (req, res) => {
 
 /* Post a new user. */
 router.post('/', function(req, res) {
-  console.log(req.body.photo);
   knex('users')
   .where('username', req.body.username)
   .then((user) => {
@@ -35,8 +34,6 @@ router.post('/', function(req, res) {
       seekingMale = true :
       seekingFemale = true
     );
-
-    console.log(req.body);
     return knex('users')
     .insert({
       first: req.body.first,
@@ -61,7 +58,6 @@ router.post('/', function(req, res) {
 
 
 router.patch('/:id', (req, res, next) => {
-  console.log(req.body);
   knex('users')
       .where('id', req.params.id)
       .first()
@@ -89,7 +85,6 @@ router.patch('/:id', (req, res, next) => {
   });
 
   router.patch('/:id/points', (req, res, next) => {
-    console.log(req.body);
     knex('users')
         .where('id', req.params.id)
         .first()

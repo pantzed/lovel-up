@@ -4,8 +4,6 @@ import './Chat.css';
 import io from 'socket.io-client';
 
 
-let socket = io.connect('https://lovel-up-socket.herokuapp.com/');
-
 class Chat extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +13,8 @@ class Chat extends React.Component {
     this.getMessageHistory();
     this._isMounted = false;
     this.getMessageHistory = this.getMessageHistory.bind(this);
-    socket.open();
+    this.socket = io.connect('https://lovel-up-socket.herokuapp.com/');
+    this.socket.open();
   }
 
   getMessageHistory() {
@@ -55,7 +54,7 @@ class Chat extends React.Component {
         created_at: Date.now()
       };
 
-      socket.emit('chat message', messageObj);
+      this.socket.emit('chat message', messageObj);
       this.props.addPoints(1); // ++ One Point for sent message! ++
 
       messageValue.value = '';
@@ -72,7 +71,7 @@ class Chat extends React.Component {
       })
     });
   
-    socket.on('chat message', (msgs)=> {
+    this.socket.on('chat message', (msgs)=> {
       if (this._isMounted === true){
         this.setState({
           messages: this.state.messages.concat(msgs),
@@ -138,7 +137,7 @@ class Chat extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false;
-    socket.close();
+    this.socket.close();
   }
 
 }
