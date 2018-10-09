@@ -96,30 +96,27 @@ class Chat extends React.Component {
 
     return (
       <div>
-        <div className='chat-menu text-right'>
-          <button type='button' className='btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'matches', 'chat')}>Back</button>
-        </div>
-
         <div className='chat-match'>
           <div className='chat-match-flex pl-4'>
-          <img src={this.props.match.photo_1 || fakePhoto}
-               className='img chat-match-img rounded-circle border'
-               alt='match'>
-          </img>
-          <div className='chat-match-info-flex pl-3'>
-            <span className='chat-match-name'>{`${this.props.match.first} ${this.props.match.last}`}</span>
-            <span className='chat-match-lovel'>Lovel: {this.props.match.level}</span>
+            <img src={this.props.match.photo_1 || fakePhoto}
+                className='img chat-match-img rounded-circle border'
+                alt='match'>
+            </img>
+            <div className='chat-match-info-flex pl-3'>
+              <span className='chat-match-name'>{`${this.props.match.first} ${this.props.match.last}`}</span>
+              <span className='chat-match-lovel'>Lovel: {this.props.match.level}</span>
+            </div>
           </div>
-          </div>
+          <button type='button' className='align-self-start mr-3 btn btn-outline-primary btn-sm'onClick={(e) => this.props.activatePage(e, 'matches', 'chat')}>Back</button>
         </div>
         <div id="messagesContainer" className='chat-stream-container'>
           <ul id='chatStream' className='chat-stream mt-4 text-light'>
             {messages.map((message, index)=> {
               if (message.user_id === this.props.userData[0].id) {
-                return <li key={index} id={`msg-${index}`} className='py-3 pl-3 pr-5 my-1 align-self-end bubble-a'>{message.message}</li>
+                return <li key={index} id={`msg-${index}`} className='py-3 px-4 my-1 align-self-end bubble-a'>{message.message}</li>
               }
               else {
-                return  <li key={index} id={`msg-${index}`} className='py-3 pl-3 pr-5 my-1 align-self-start bubble-b'>{message.message}</li>
+                return  <li key={index} id={`msg-${index}`} className='py-3 px-4 my-1 align-self-start bubble-b'>{message.message}</li>
               }
             })}
           </ul>

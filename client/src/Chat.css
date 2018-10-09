@@ -35,12 +35,18 @@
 .chat-match {
   background-color: white;
   border-bottom: 1px solid #d4d4d4;
+  display: flex;
+  justify-content: space-between;
   padding-bottom: 15px;
   position: fixed;
-  top: 80px;
+  top: 0;
   width: 100%;
-  height: 75px;
+  height: 120px;
   margin-left: -15px;
+  padding-top: 20px;
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2);
 }
 
 .chat-match-flex {
@@ -53,12 +59,13 @@
 }
 
 .chat-match-img {
-  height: 60px;
+  height: 75px;
   width: auto;
 }
 
 .chat-match-name {
   font-size: 1.2em;
+  padding-right: 20px;
 }
 
 .chat-match-lovel {
@@ -87,6 +94,7 @@
   border-radius: 25px;
   padding: 10px;
   box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.25);
+  max-width: 70%;
 }
 
 .bubble-b {
@@ -94,4 +102,5 @@
   border-radius: 25px;
   padding: 10px;
   box-shadow: -1px -1px 5px 1px rgba(0, 0, 0, 0.25);
+  max-width: 70%;
 }
