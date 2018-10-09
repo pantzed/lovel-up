@@ -47,7 +47,6 @@ router.post('/', function(req, res) {
       seeking_male: seekingMale,
       username: req.body.username,
       birthdate: req.body.birthdate,
-      photo_1: req.body.photo,
       location: req.body.location,
     }, '*')
     .then((user) => {
