@@ -44,7 +44,7 @@ class App extends Component {
   }
 
   handleLogout(e){
-    this.activatePage(e, 'LOGIN', 'PROFILE');
+    this.activatePage(e, 'login', 'profile');
     this.setState({
       userData: [],
     });
