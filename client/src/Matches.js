@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './Matches.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import BlankScreenMessage from './BlankScreenMessage';
 
 class Matches extends React.Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Matches extends React.Component {
         <div className='row d-flex justify-content-center'>
           <div className='col-11 text-center'>
             <h2 className='pb-4 pt-5'>Matches</h2>
-            {
+            {this.state.matches.length > 0 &&
               this.state.matches.map((match, index) => {
                 return (
                   <div className='row mt-3 d-flex align-items-center border rounded' 
@@ -68,6 +69,11 @@ class Matches extends React.Component {
                   </div>
                 )
               })
+            }
+            {
+              this.state.matches.length < 1 && 
+              <BlankScreenMessage message={'Looks like you haven\'t matched with anyone yet!'} 
+                                  subMessage={'Go to the discover page and find a match!'}/>
             }
           </div>
         </div>
