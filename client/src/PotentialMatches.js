@@ -69,25 +69,43 @@ class PotentialMatches extends React.Component {
         </div>
           <div className='row mb-5 d-flex justify-content-center'>
             <div className='col-11'>
-            <div className='mt-4'>{user.first}</div>
-            <div className='border-bottom'>{years}, {user.location}</div>
-
+            <div className='mt-4 font-weight-bold'>{user.first} {user.last}</div>
+            <div className='pb-3 border-bottom'>
+              <span>Age: {years}</span> <br />
+              <span>Location: {user.location}</span>
+            </div>
+          {user.occupation && 
+          <div>
             <div className='text-secondary mt-4'>Occupation</div>
             <div className='mb-4 text-dark'>{user.occupation}</div>
-
+          </div>
+          }
+          {user.ethnicity &&
+          <div>
             <div className='text-secondary'>Ethnicity</div>
             <div className='mb-4 text-dark'>{user.ethnicity}</div>
-
+          </div>
+          }
+          {user.religion &&
+          <div>
             <div className='text-secondary'>Religion</div>
             <div className='mb-4 text-dark'>{user.religion}</div>
-
+          </div>
+          }
+          {user.school &&
+          <div>
             <div className='text-secondary'>School</div>
             <div className='mb-4 text-dark'>{user.school}</div>
-
+          </div>
+          }
+          {user.bio &&
+          <div>
             <div className='text-secondary border-top'>Bio</div>
-            <div className='mb-4 text-dark border-bottom'>{user.description}</div>
+            <div className='text-dark border-bottom'>{user.description}</div>
+          </div>
+          }
 
-            <div className='d-flex justify-content-between'>
+            <div className='mt-4 d-flex justify-content-between'>
               <button type='button' className='btn btn-outline-danger full-width shadow-md col-5' onClick={(e) => this.nextUser(e, false)} >Pass</button>
               <button type='button' className='btn btn-outline-primary full-width shadow-md col-5'onClick={(e) => this.nextUser(e, true)}>Like</button>
             </div>
