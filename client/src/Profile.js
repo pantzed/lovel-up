@@ -34,7 +34,6 @@ class Profile extends React.Component {
     })
     .then((text) => JSON.parse(text))
     .then((data) => {
-      console.log(data);
       this.props.activateUser([data]);
     })
     .catch((error) => {
@@ -50,7 +49,6 @@ class Profile extends React.Component {
     this.setState({
         user: userData
       }); 
-      console.log(this.state.user);
     };
 
   render() {
