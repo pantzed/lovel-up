@@ -98,7 +98,7 @@ class PotentialMatches extends React.Component {
             <div className='mb-4 text-dark'>{user.school}</div>
           </div>
           }
-          {user.bio &&
+          {user.description &&
           <div>
             <div className='text-secondary border-top'>Bio</div>
             <div className='text-dark border-bottom'>{user.description}</div>
