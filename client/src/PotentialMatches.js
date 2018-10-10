@@ -54,7 +54,7 @@ class PotentialMatches extends React.Component {
       if(this.state.potentialMatches.length>0){
         console.log('potentialMacthesList: ', this.state.potentialMatches);
         const user = this.state.potentialMatches[0];
-  
+        const fakePhoto = 'https://images.pexels.com/photos/904276/pexels-photo-904276.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350';
         const dateNow = Date.now();
         const birthdateParsed = Date.parse(user.birthdate);
         const years = Math.floor((dateNow - birthdateParsed)/1000/60/60/24/365);
@@ -63,7 +63,7 @@ class PotentialMatches extends React.Component {
         <div className='row d-flex justify-content-center'>
           <div className='col-12 pt-5 pb-4 text-center'>
             <h2>{`${user.first}'s Profile`}</h2>
-            <img src='https://images.pexels.com/photos/904276/pexels-photo-904276.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350'
+            <img src={user.photo_1 || fakePhoto}
                   className='img img-fluid' 
                   alt='your profile' /> 
           </div>
