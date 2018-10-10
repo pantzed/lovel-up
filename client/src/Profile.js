@@ -113,7 +113,7 @@ class Profile extends React.Component {
               </div>
               </div>
             </form>
-            <div className='mb-5'></div>
+            <div className='botSpace mb-5 pb-5'></div>
           </div>
         </div>
       </div>

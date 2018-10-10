@@ -88,10 +88,11 @@ class PotentialMatches extends React.Component {
             <div className='text-secondary border-top'>Bio</div>
             <div className='mb-4 text-dark border-bottom'>{user.description}</div>
 
-              <div className='d-flex justify-content-between'>
-                <button type='button' className='btn btn-outline-danger full-width shadow-md col-5' onClick={(e) => this.nextUser(e, false)} >Pass</button>
-                <button type='button' className='btn btn-outline-primary full-width shadow-md col-5'onClick={(e) => this.nextUser(e, true)}>Like</button>
-              </div>
+            <div className='d-flex justify-content-between'>
+              <button type='button' className='btn btn-outline-danger full-width shadow-md col-5' onClick={(e) => this.nextUser(e, false)} >Pass</button>
+              <button type='button' className='btn btn-outline-primary full-width shadow-md col-5'onClick={(e) => this.nextUser(e, true)}>Like</button>
+            </div>
+            <div className='botSpace mb-5 pb-5'></div>
 
             </div>
           </div>
