@@ -58,6 +58,7 @@ router.post('/', function(req, res) {
 
 
 router.patch('/:id', (req, res, next) => {
+  console.log(req.body);
   knex('users')
       .where('id', req.params.id)
       .first()

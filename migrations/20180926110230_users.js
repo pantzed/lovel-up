@@ -21,7 +21,7 @@ exports.up = function(knex, Promise) {
     table.text('photo_4').defaultTo(null);
     table.text('photo_5').defaultTo(null);
     table.text('photo_6').defaultTo(null);
-    table.string('description', 400).nullable;
+    table.string('description', 800).nullable;
     table.integer('total_exp').defaultTo(0);
     table.integer('level_exp').defaultTo(0);
     table.integer('level').defaultTo(1);
