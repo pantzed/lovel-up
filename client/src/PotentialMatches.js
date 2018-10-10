@@ -52,7 +52,6 @@ class PotentialMatches extends React.Component {
     render() {
       let matches;
       if(this.state.potentialMatches.length>0){
-        console.log('potentialMacthesList: ', this.state.potentialMatches);
         const user = this.state.potentialMatches[0];
         const fakePhoto = 'https://images.pexels.com/photos/904276/pexels-photo-904276.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350';
         const dateNow = Date.now();
