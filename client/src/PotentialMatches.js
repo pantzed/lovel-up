@@ -61,7 +61,7 @@ class PotentialMatches extends React.Component {
         
         matches = <div>
         <div className='row d-flex justify-content-center'>
-          <div className='col-12 text-center'>
+          <div className='col-12 pt-5 pb-4 text-center'>
             <h2>{`${user.first}'s Profile`}</h2>
             <img src='https://images.pexels.com/photos/904276/pexels-photo-904276.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350'
                   className='img img-fluid' 

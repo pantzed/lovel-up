@@ -102,7 +102,7 @@ class Profile extends React.Component {
               <FormGroup id={'school'} type={'text'} label={'School'} value={user.school} handleChange={this.handleChange} readOnly={false} />
               <div className='form-group'>
                 <label htmlFor='description'>Description</label>
-                <textarea className="form-control" id="exampleFormControlTextarea1" name='description' rows="3" value={user.description} onChange={(e) => this.handleChange(e)}></textarea>
+                <textarea className="form-control" id="exampleFormControlTextarea1" name='description' rows="3" value={user.description || null} onChange={(e) => this.handleChange(e)}></textarea>
               </div>
               <div className='class="row d-flex justify-content-between"'>
               <div className='col-6 text-center'>
