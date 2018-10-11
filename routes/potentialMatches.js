@@ -40,10 +40,9 @@ router.get('/:id', (req, res) => {
   })
   .then(()=>{
     knex('users')
+    .orderBy('id', 'asc')
     .then(users=>{
-        if(users[user_id])
-        knex('users')
-        .where()
+
         function checkMatches(match){
           for (let j=0; j<likedMatchesArr.length; j++){
             if((match.id===likedMatchesArr[j])){
